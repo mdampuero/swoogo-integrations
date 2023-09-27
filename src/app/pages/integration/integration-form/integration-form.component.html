@@ -1,0 +1,84 @@
+<div class="container-fluid animated fadeIn">
+    <app-breadcrumb [title]="'Integraciones'" [breadcrumbs]="breadcrumbs"></app-breadcrumb>
+        
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title animated fadeInDown">{{ breadcrumbs[(breadcrumbs.length-1)].title }}</h4>
+                    <!-- <h6 class="card-subtitle">Just add <code>form-material</code> class to the form that's it.</h6> -->
+                    <form class="form-material m-t-40" (ngSubmit)="save(integration)" #integration="ngForm">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Evento *</label>
+                                    <select class="form-control" [(ngModel)]="form.event_id" name="event_id">
+                                        <option value=''>--Seleccione una opción--</option>
+                                        <option value="{{ item.id }}" *ngFor="let item of events; let i=index;" >{{ item.name }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Tipo *</label>
+                                    <select class="form-control" [(ngModel)]="form.type" name="type">
+                                        <option value=''>--Seleccione una opción--</option>
+                                        <option value="{{ type.value }}" *ngFor="let type of types; let i=index;" >{{ type.label }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <ng-container *ngIf="form.type == 'MERCADOPAGO'">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Access Token *</label>
+                                    <input type="text" class="form-control" [(ngModel)]="form.access_token" name="access_token" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Título del ítem *</label>
+                                    <input type="text" class="form-control" [(ngModel)]="form.item_title" name="item_title" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>Moneda *</label>
+                                    <select class="form-control" [(ngModel)]="form.item_currency" name="item_currency">
+                                        <option value=''>--Seleccione una opción--</option>
+                                        <option value="{{ currency.value }}" *ngFor="let currency of currencies; let i=index;" >{{ currency.label }} ({{ currency.value }})</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>Precio</label>
+                                    <input type="text" class="form-control" [(ngModel)]="form.item_price" name="item_price" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>Activo</label>
+                                    <select class="form-control" [(ngModel)]="form.isActive" name="isActive">
+                                        <option value="1">SI</option>
+                                        <option value="0">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            </ng-container>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Descripción</label>
+                                    <textarea class="form-control" [(ngModel)]="form.description" name="description" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animated fadeInUp">
+                            <button type="submit" class="btn btn-success waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar</button>
+                            <a role="button" routerLink="/integraciones" type="button" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-remove"></i> Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

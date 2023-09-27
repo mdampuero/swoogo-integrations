@@ -1,0 +1,64 @@
+<div class="container-fluid animated fadeIn" *ngIf="data">
+    <app-breadcrumb [title]="'Integraciones'" [breadcrumbs]="breadcrumbs"></app-breadcrumb>
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">
+                Integración: <b>Nº</b> {{ data.id }}
+            </h3>
+            <hr>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card bg-light">
+                        <h4 class="card-header bg-info text-white"><b>Datos de la integración</b></h4>
+                        <div class="card-body">
+                            <p><b>Nº:</b> {{ data.id }}</p>
+                            <p><b>Tipo:</b> {{ data.type | translate }}</p>
+                            <p><b>Evento:</b> {{ data.event.name }}</p>
+                            <p><b>Descripción:</b> {{ data.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card bg-light">
+                        <h4 class="card-header bg-success text-white"><b>Configuración</b></h4>
+                        <div class="card-body">
+                            <p><b>Access Token:</b> {{ data.access_token }}</p>
+                            <p><b>Título del ítem:</b> {{ data.item_title }}</p>
+                            <p><b>Precio:</b> ({{ data.item_currency }}) {{ data.item_price | formatNumber }} </p>
+                            <p><b>Activo: </b> <span [innerHTML]="data.isActive | badgeBinary"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-light">
+                <h4 class="card-header bg-primary text-white"><b>Transacciones</b></h4>
+                <div class="card-body">
+                    <table class="table table-hover table-striped table-bordered ">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                                <th>Monto</th>
+                                <th>Códgio de autorización</th>
+                                <th>Email</th>
+                                <th>Identificación</th>
+                                <th>Método</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of data.transactions; let i=index;">
+                                <td>{{ item.created_at | date:"d/M/Y H:m" }}</td>
+                                <td [innerHTML]="item.status| badgeStatus"></td>
+                                <td>{{ item.item_currency}} {{ item.amount | formatNumber }}</td>
+                                <td>{{ item.response.authorization_code }}</td>
+                                <td>{{ item.response.payer.email }}</td>
+                                <td>{{ item.response.payer.identification.number }}</td>
+                                <td>{{ item.response.payment_type_id | translate}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="container-fluid">
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">Inicio</h3>
+        </div>
+    </div>    
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="m-r-20 align-self-center">
+                            <span class="fa-stack fa-lg text-primary" style="width: 3em;height: 3em;line-height: 3em;">
+                                <i class="fa fa-circle fa-stack-2x" style="font-size: 3em;"></i>
+                                <i class="fa fa-link fa-stack-1x fa-inverse" style="font-size: 1.5em;"></i>
+                            </span>
+                        </div>
+                        <div class="align-self-center">
+                            <h5 class="text-muted m-t-10 m-b-0">Total de Integraciones</h5>
+                            <h2 class="m-t-0">
+                                <ng-container *ngIf="!integrationStats"><i class="fa fa-refresh fa-spin fa-1x fa-fw"></i></ng-container>
+                                <ng-container *ngIf="integrationStats">{{ integrationStats.total }}</ng-container>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="m-r-20 align-self-center">
+                            <span class="fa-stack fa-lg text-warning" style="width: 3em;height: 3em;line-height: 3em;">
+                                <i class="fa fa-circle fa-stack-2x" style="font-size: 3em;"></i>
+                                <i class="fa fa-users fa-stack-1x fa-inverse" style="font-size: 1.5em;"></i>
+                            </span>
+                        </div>
+                        <div class="align-self-center">
+                            <h5 class="text-muted m-t-10 m-b-0">Total de Usuarios</h5>
+                            <h2 class="m-t-0">
+                                <ng-container *ngIf="!userStats"><i class="fa fa-refresh fa-spin fa-1x fa-fw"></i></ng-container>
+                                <ng-container *ngIf="userStats">{{ userStats.total }}</ng-container>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="m-r-20 align-self-center">
+                            <span class="fa-stack fa-lg text-success" style="width: 3em;height: 3em;line-height: 3em;">
+                                <i class="fa fa-circle fa-stack-2x" style="font-size: 3em;"></i>
+                                <i class="fa fa-usd fa-stack-1x fa-inverse" style="font-size: 2em;"></i>
+                            </span>
+                        </div>
+                        <div class="align-self-center">
+                            <h5 class="text-muted m-t-10 m-b-0">Total de Transacciones</h5>
+                            <h2 class="m-t-0">
+                                <ng-container *ngIf="!transactionStats"><i class="fa fa-refresh fa-spin fa-1x fa-fw"></i></ng-container>
+                                <ng-container *ngIf="transactionStats">{{ transactionStats.total }}</ng-container>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
