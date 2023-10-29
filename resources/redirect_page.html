@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://www.click-eventos.com/ingrammicro-fondazo2023 -->
+<html lang="es-AR">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="origin-trial"
+        content="A89JPrWYXvEpNQ/xE+PjjlGJiBu/L2GfQcplC/QkDJOS1fBoX5Q4/HLfT1dXpD1td7C2peXE3bSCJiYdwoFcNgQAAACSeyJvcmlnaW4iOiJodHRwczovL3JlY2FwdGNoYS5uZXQ6NDQzIiwiZmVhdHVyZSI6IkRpc2FibGVUaGlyZFBhcnR5U3RvcmFnZVBhcnRpdGlvbmluZyIsImV4cGlyeSI6MTcyNTQwNzk5OSwiaXNTdWJkb21haW4iOnRydWUsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0=">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-param" content="_csrf">
+    <meta name="csrf-token"
+        content="O4NTSORDSirunMZlHEc9I_KIawtARjHCBYOCYshDi7NM82Rw1TckG6bmrEhNNkhPvrE6TBAWbo919NMnvnK44A==">
+    <title>9º Fondazo Ingram Micro 2023</title>
+    <meta name="robots" content="noindex">
+    <meta name="referrer" content="origin">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.click-eventos.com/ingrammicro-fondazo2023">
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="Begin Registration">
+
+    <script>
+        if (typeof registrantUpdateUrl === 'undefined') {
+            registrantUpdateUrl = '/frontend/registrant/-action-?eventId=125154&pageId=4001075';
+        } else {
+            oldRegistrantUpdateUrl = registrantUpdateUrl;
+            registrantUpdateUrl = '/frontend/registrant/-action-?eventId=125154&pageId=4001075';
+        }
+        eventSlug = 'ingrammicro-fondazo2023';
+
+        var __TRANSLATIONS = { "Close": "Cerrar", "Loading": "Loading" };
+        window.jQuery || document.write('<script src="https://assets.swoogo.com/downloads/jquery.min.js"><\/script>');</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin="true">
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link rel="stylesheet" href="./9º Fondazo Ingram Micro 2023_files/css2">
+</head>
+
+<body >
+    <button onclick="showBtn()">Show Btn</button>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const integration_id = urlParams.get('integration_id');
+        const registrant_id = urlParams.get('registrant_id');
+        const currency_id = urlParams.get('currency_id');
+        const createOrder = async () => {
+            return jQuery.ajax({
+                url: "http://localhost:8080/api/payments/create-order",
+                type: 'POST',
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(
+                    {
+                        integration_id,
+                        registrant_id,
+                        item_currency: currency_id
+                    }
+                ),
+                crossDomain: true
+            });
+        }
+
+        const payment = async () => {
+            try {
+                const res = await createOrder()
+                console.log(res.data);
+                location.href = res.data;
+            } catch (err) {
+                alert("ERROR")
+            }
+        }
+        const showBtn = async () => {
+            jQuery("body").append(`<div id="loading_layer" style="background-color: rgba(0,0,0,0.5);
+                width: 100%;
+                height: 100%;
+                margin: -8px;
+                position: absolute;
+                text-align: center;
+                vertical-align: middle;">
+                <span style="color:white">Cargando ...</span></div>`);
+                payment();
+        }
+        jQuery(function () {
+            
+            
+        });
+    </script>
+</body>
+
+</html>

@@ -12,7 +12,7 @@ export class StatsService {
   }
   
   total() {
-    return this.http.get(`${environment.apiUrl}stats/total`);
+    return this.http.get(`${environment.baseBEUrl}/api/stats/total`);
   }
   
 }

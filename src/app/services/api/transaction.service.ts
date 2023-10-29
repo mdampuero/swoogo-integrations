@@ -30,16 +30,16 @@ export class TransactionService {
   }
 
   get(query: string) {
-    return this.http.get(`${environment.apiUrl}transactions?search=${query}&offset=${this.offset}&limit=${this.limit}&sort=${this.sort}&direction=${this.direction}`);
+    return this.http.get(`${environment.baseBEUrl}/api/transactions?search=${query}&offset=${this.offset}&limit=${this.limit}&sort=${this.sort}&direction=${this.direction}`);
   }
   stats() {
-    return this.http.get(`${environment.apiUrl}transactions/stats/get`);
+    return this.http.get(`${environment.baseBEUrl}/api/transactions/stats/get`);
   }
   getOne(id: string) {
-    return this.http.get(`${environment.apiUrl}transactions/${id}`);
+    return this.http.get(`${environment.baseBEUrl}/api/transactions/${id}`);
   }
   getAll() {
-    return this.http.get(`${environment.apiUrl}transactions?search%5Bvalue%5D=&start=0&length=-1&sort=name&direction=ASC`);
+    return this.http.get(`${environment.baseBEUrl}/api/transactions?search%5Bvalue%5D=&start=0&length=-1&sort=name&direction=ASC`);
   }
   
 }

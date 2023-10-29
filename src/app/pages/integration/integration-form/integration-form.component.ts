@@ -23,10 +23,10 @@ export class IntegrationFormComponent implements OnInit {
     description: '',
     event_id: '',
     event: {},
-    item_title: '',
+    // item_title: '',
     item_currency: '',
     access_token: '',
-    item_price: 1,
+    // item_price: 1,
     isActive: 1
   };
   public events: any;

@@ -32,24 +32,24 @@ export class DemoService {
   }
 
   get(query: string) {
-    return this.http.get(`${environment.apiUrl}demos?search=${query}&offset=${this.offset}&limit=${this.limit}&sort=${this.sort}&direction=${this.direction}`);
+    return this.http.get(`${environment.baseBEUrl}/api/demos?search=${query}&offset=${this.offset}&limit=${this.limit}&sort=${this.sort}&direction=${this.direction}`);
   }
   stats() {
-    return this.http.get(`${environment.apiUrl}demos/stats/get`);
+    return this.http.get(`${environment.baseBEUrl}/api/demos/stats/get`);
   }
   getOne(id: string) {
-    return this.http.get(`${environment.apiUrl}demos/${id}`);
+    return this.http.get(`${environment.baseBEUrl}/api/demos/${id}`);
   }
   getAll() {
-    return this.http.get(`${environment.apiUrl}demos?search%5Bvalue%5D=&start=0&length=-1&sort=name&direction=ASC`);
+    return this.http.get(`${environment.baseBEUrl}/api/demos?search%5Bvalue%5D=&start=0&length=-1&sort=name&direction=ASC`);
   }
   save(data:Demo) {
     if(data.id !=='')
-      return this.http.put(`${environment.apiUrl}demos/${data.id}`, data);
+      return this.http.put(`${environment.baseBEUrl}/api/demos/${data.id}`, data);
     else
-      return this.http.post(`${environment.apiUrl}demos`, data);
+      return this.http.post(`${environment.baseBEUrl}/api/demos`, data);
   }
   delete(item:Demo) {
-    return this.http.delete(`${environment.apiUrl}demos/${item.id}`);
+    return this.http.delete(`${environment.baseBEUrl}/api/demos/${item.id}`);
   }
 }

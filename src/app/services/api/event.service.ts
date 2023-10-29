@@ -13,6 +13,6 @@ export class EventService {
   }
 
   getAll() {
-    return this.http.get(`${environment.apiUrl}events`);
+    return this.http.get(`${environment.baseBEUrl}/api/events`);
   }
 }
