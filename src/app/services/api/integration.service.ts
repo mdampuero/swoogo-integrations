@@ -34,27 +34,31 @@ export class IntegrationService {
   }
 
   get(query: string) {
-    return this.http.get(`${environment.apiUrl}integrations?search=${query}&offset=${this.offset}&limit=${this.limit}&sort=${this.sort}&direction=${this.direction}`);
+    return this.http.get(`${environment.baseBEUrl}/api/integrations?search=${query}&offset=${this.offset}&limit=${this.limit}&sort=${this.sort}&direction=${this.direction}`);
   }
 
   stats() {
-    return this.http.get(`${environment.apiUrl}integrations/stats/get`);
+    return this.http.get(`${environment.baseBEUrl}/api/integrations/stats/get`);
   }
   
   getOne(id: string) {
-    return this.http.get(`${environment.apiUrl}integrations/${id}`);
+    return this.http.get(`${environment.baseBEUrl}/api/integrations/${id}`);
+  }
+
+  getTransactions(id: string) {
+    return this.http.get(`${environment.baseBEUrl}/api/integrations/${id}/transactions/`);
   }
   
   getAll() {
-    return this.http.get(`${environment.apiUrl}integrations?search%5Bvalue%5D=&start=0&length=-1&sort=name&direction=ASC`);
+    return this.http.get(`${environment.baseBEUrl}/api/integrations?search%5Bvalue%5D=&start=0&length=-1&sort=name&direction=ASC`);
   }
   save(data:Integration) {
     if(data.id !=='')
-      return this.http.put(`${environment.apiUrl}integrations/${data.id}`, data);
+      return this.http.put(`${environment.baseBEUrl}/api/integrations/${data.id}`, data);
     else
-      return this.http.post(`${environment.apiUrl}integrations`, data);
+      return this.http.post(`${environment.baseBEUrl}/api/integrations`, data);
   }
   delete(item:Integration) {
-    return this.http.delete(`${environment.apiUrl}integrations/${item.id}`);
+    return this.http.delete(`${environment.baseBEUrl}/api/integrations/${item.id}`);
   }
 }

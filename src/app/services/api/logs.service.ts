@@ -31,17 +31,17 @@ export class LogsService {
   }
 
   get(query: string) {
-    return this.http.get(`${environment.apiUrl}logs?search%5Bvalue%5D=${query}&start=${this.offset}&length=${this.limit}&sort=${this.sort}&direction=${this.direction}`);
+    return this.http.get(`${environment.baseBEUrl}/api/logs?search%5Bvalue%5D=${query}&start=${this.offset}&length=${this.limit}&sort=${this.sort}&direction=${this.direction}`);
   }
   
   getOne(id: string) {
-    return this.http.get(`${environment.apiUrl}logs/${id}`);
+    return this.http.get(`${environment.baseBEUrl}/api/logs/${id}`);
   }
   getAll() {
-    return this.http.get(`${environment.apiUrl}logs?search%5Bvalue%5D=&start=0&length=-1&sort=name&direction=ASC`);
+    return this.http.get(`${environment.baseBEUrl}/api/logs?search%5Bvalue%5D=&start=0&length=-1&sort=name&direction=ASC`);
   }
   getByResource(resource:string) {
-      return this.http.get(`${environment.apiUrl}logs/resource/${resource}`).pipe(map((data:any) => {
+      return this.http.get(`${environment.baseBEUrl}/api/logs/resource/${resource}`).pipe(map((data:any) => {
         data.forEach((myObject: any, index: any) => {
             myObject.inverse=((index%2)==0)?false:true;
         });
@@ -51,7 +51,7 @@ export class LogsService {
   }
   
   save(data:any) {
-    return this.http.post(`${environment.apiUrl}logs`, data).pipe(map((data:any) => {
+    return this.http.post(`${environment.baseBEUrl}/api/logs`, data).pipe(map((data:any) => {
         data.forEach((myObject: any, index: any) => {
             myObject.inverse=((index%2)==0)?false:true;
         });
@@ -60,6 +60,6 @@ export class LogsService {
     );
   }
   delete(item:any) {
-    return this.http.delete(`${environment.apiUrl}logs/${item.id}`);
+    return this.http.delete(`${environment.baseBEUrl}/api/logs/${item.id}`);
   }
 }

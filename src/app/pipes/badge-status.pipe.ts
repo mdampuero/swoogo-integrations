@@ -9,8 +9,10 @@ export class BadgeStatusPipe implements PipeTransform {
     switch(value){
       case 'approved':
         return '<span class="badge badge-pill badge-success">Aprobado</span>';
+      case 'pending':
+        return '<span class="badge badge-pill badge-warning">Pendiente</span>';
       default:
-        return '<span class="badge badge-pill badge-danger">Rechazado</span>';
+        return '<span class="badge badge-pill badge-danger">Pendiente</span>';
     }
   }
 
