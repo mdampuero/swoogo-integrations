@@ -51,7 +51,7 @@ export class IntegrationDetailComponent implements OnInit {
     // let sdkString = `const widgetId="38609517",integration_id="##INTEGRATION_ID##",gateway="${environment.baseBEUrl}/",mode="sandbox";jQuery(function(){captureForm()});`
     let sdkString = `<script type="text/javascript" src="https://swoogo-integrations-be-production.up.railway.app/swoogo-integration.1.0.0.js"></script>
     
-    <script>const widgetId="38609517";
+    <script>
     const integration_id="##INTEGRATION_ID##";
     const gateway="${environment.baseBEUrl}/";
     const registrantForm="#registrant-form"; 
