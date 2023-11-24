@@ -4,6 +4,7 @@
         <div class="card-body">
             <h3 class="card-title">
                 Integración: <b>Nº</b> {{ data.id }}
+                
             </h3>
             <hr>
             <div class="row">
@@ -24,12 +25,18 @@
                         <div class="card-body">
                             <p><b>Access Token:</b> {{ data.access_token }}</p>
                             <p><b>Activo: </b> <span [innerHTML]="data.isActive | badgeBinary"></span></p>
+                            <p><b>Creada: </b> {{ data.created_at | date: 'dd/MM/yyyy HH:mm' }}</p>
                         </div>
                     </div>
                 </div>
             </div>
+            
+
             <div class="card bg-light">
-                <h4 class="card-header bg-warning text-white"><b>SDK</b></h4>
+                <h4 class="card-header bg-warning text-white">
+                    <b>SDK</b>
+                    <app-btn-copy [text]="sdkString"></app-btn-copy>
+                </h4>
                 <div class="card-body">
                     <p>{{ sdkString  }}</p>
                 </div>

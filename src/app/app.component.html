@@ -1,4 +1,4 @@
-<ng-container >
+<ng-container *ngIf="loginService.isAutenticate()">
     <div id="main-wrapper">
         <header class="topbar">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
@@ -46,7 +46,7 @@
         </div>
     </div>
 </ng-container>
-<!-- <ng-container *ngIf="!loginService.isAutenticate()">
+<ng-container *ngIf="!loginService.isAutenticate()">
     <router-outlet></router-outlet>
-</ng-container> -->
+</ng-container>
 <ngx-spinner type="ball-scale-multiple"><p style="color: white">Cargando...</p></ngx-spinner>

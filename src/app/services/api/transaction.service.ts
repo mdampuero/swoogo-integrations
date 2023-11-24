@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { EventsService } from '../events.service';
+import { LoginService } from '../db/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class TransactionService {
   public sort = "createdAt";
   public direction = "DESC";
 
-  constructor(private http: HttpClient,public events: EventsService) { 
+  constructor(private http: HttpClient,public events: EventsService, public login: LoginService) { 
 
   }
 
@@ -30,16 +31,16 @@ export class TransactionService {
   }
 
   get(query: string) {
-    return this.http.get(`${environment.baseBEUrl}/api/transactions?search=${query}&offset=${this.offset}&limit=${this.limit}&sort=${this.sort}&direction=${this.direction}`);
+    return this.http.get(`${environment.baseBEUrl}/api/transactions?search=${query}&offset=${this.offset}&limit=${this.limit}&sort=${this.sort}&direction=${this.direction}`,this.login.createAuthorizationHeader());
   }
   stats() {
-    return this.http.get(`${environment.baseBEUrl}/api/transactions/stats/get`);
+    return this.http.get(`${environment.baseBEUrl}/api/transactions/stats/get`,this.login.createAuthorizationHeader());
   }
   getOne(id: string) {
-    return this.http.get(`${environment.baseBEUrl}/api/transactions/${id}`);
+    return this.http.get(`${environment.baseBEUrl}/api/transactions/${id}`,this.login.createAuthorizationHeader());
   }
   getAll() {
-    return this.http.get(`${environment.baseBEUrl}/api/transactions?search%5Bvalue%5D=&start=0&length=-1&sort=name&direction=ASC`);
+    return this.http.get(`${environment.baseBEUrl}/api/transactions?search%5Bvalue%5D=&start=0&length=-1&sort=name&direction=ASC`,this.login.createAuthorizationHeader());
   }
   
 }
