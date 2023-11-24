@@ -14,21 +14,21 @@ import { UsersFormComponent } from './pages/users/users-form/users-form.componen
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   
-  { path: 'demos', component: DemoComponent},
-  { path: 'demos/nuevo', component: DemoFormComponent },
-  { path: 'demos/editar/:id', component: DemoFormComponent },
+  { path: 'demos', component: DemoComponent,canActivate:[AuthGuard]},
+  { path: 'demos/nuevo', component: DemoFormComponent ,canActivate:[AuthGuard]},
+  { path: 'demos/editar/:id', component: DemoFormComponent ,canActivate:[AuthGuard]},
   
-  { path: 'usuarios', component: UsersComponent},
-  { path: 'usuarios/nuevo', component: UsersFormComponent },
-  { path: 'usuarios/editar/:id', component: UsersFormComponent },
+  { path: 'usuarios', component: UsersComponent,canActivate:[AuthGuard]},
+  { path: 'usuarios/nuevo', component: UsersFormComponent ,canActivate:[AuthGuard]},
+  { path: 'usuarios/editar/:id', component: UsersFormComponent ,canActivate:[AuthGuard]},
   
-  { path: 'integraciones', component: IntegrationComponent},
-  { path: 'integraciones/nuevo', component: IntegrationFormComponent },
-  { path: 'integraciones/:id', component: IntegrationDetailComponent },
-  { path: 'integraciones/editar/:id', component: IntegrationFormComponent },
+  { path: 'integraciones', component: IntegrationComponent,canActivate:[AuthGuard]},
+  { path: 'integraciones/nuevo', component: IntegrationFormComponent ,canActivate:[AuthGuard]},
+  { path: 'integraciones/:id', component: IntegrationDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'integraciones/editar/:id', component: IntegrationFormComponent ,canActivate:[AuthGuard]},
   
-  { path: '', pathMatch:'full', component: HomeComponent},
-  { path: '**', pathMatch:'full', component: HomeComponent},
+  { path: '', pathMatch:'full', component: HomeComponent,canActivate:[AuthGuard]},
+  { path: '**', pathMatch:'full', component: HomeComponent,canActivate:[AuthGuard]},
 ];
 
 @NgModule({

@@ -34,10 +34,16 @@ export class IntegrationFormComponent implements OnInit {
     value: 'MERCADOPAGO',
     label: 'Mercado Pago'
   }]
-  public currencies: any = [{
-    value: 'CLP',
-    label: 'Pesos chilenos'
-  }]
+  public currencies: any = [
+    {
+      value: 'CLP',
+      label: 'Pesos chilenos'
+    },
+    {
+      value: 'ARS',
+      label: 'Pesos argentinos'
+    }
+  ]
   public titlePage: string = 'Nuevo';
 
   public breadcrumbs = [
@@ -64,7 +70,7 @@ export class IntegrationFormComponent implements OnInit {
       this.loadForm('');
     }
   }
-  
+
   loadForm(id: any) {
     this.spinner.show();
     if (id) {

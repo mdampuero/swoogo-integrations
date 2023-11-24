@@ -37,6 +37,7 @@ import { UsersFormComponent } from './pages/users/users-form/users-form.componen
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BadgeBinaryPipe } from './pipes/badge-binary.pipe';
+import { BtnCopyComponent } from './components/btn-copy/btn-copy.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { BadgeBinaryPipe } from './pipes/badge-binary.pipe';
     BadgeBinaryPipe,
     UsersComponent,
     UsersFormComponent,
+    BtnCopyComponent,
     // TranslatePipe
   ],
   imports: [

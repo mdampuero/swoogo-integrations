@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginService } from './services/db/login.service';
 import {TranslateService} from "@ngx-translate/core";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,21 +11,21 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class AppComponent {
   title = 'Click Group | Agencia Tecnológica de Eventos';
-  constructor(public loginService:LoginService,private translate: TranslateService) {
+  constructor(public loginService:LoginService,private translate: TranslateService,public router:Router) {
     translate.setDefaultLang('es');
     translate.use('es');
     setInterval(() => {   
       if(this.loginService.user){
         if((this.loginService.unixtime() - this.loginService.user.lastActivity) > (this.loginService.durationSession * 60) ){
           this.loginService.logout();
-          location.reload();         
+          location.reload();
         }
       }
     }, 60000);
    }
 
   logout(){
-    // this.loginService.logout();
-    // location.reload();
+    this.loginService.logout();
+    location.reload();
   }
 }
