@@ -56,7 +56,7 @@ export class IntegrationDetailComponent implements OnInit {
     const gateway="${environment.baseBEUrl}/";
     const registrantForm="#registrant-form"; 
     const mode="prod";
-    jQuery(function(){captureForm()});<script>`
+    jQuery(function(){captureForm()});</script>`
     
     this.sdkString = sdkString.replace(new RegExp("\\##INTEGRATION_ID##", "gm"), this.id);
     this.breadcrumbs[2].title = this.data.id;
