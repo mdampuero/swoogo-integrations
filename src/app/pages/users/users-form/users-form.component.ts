@@ -26,8 +26,8 @@ export class UsersFormComponent implements OnInit {
   public titlePage:string='Nuevo';
 
   public breadcrumbs=[
-    {url:'/inicio',title:'Inicio'},
-    {url:'/usuarios',title:'Usuarios'},
+    {url:'/admin/inicio',title:'Inicio'},
+    {url:'/admin/usuarios',title:'Usuarios'},
     {url:'',title:'Nuevo'}
   ];
 

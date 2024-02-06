@@ -21,8 +21,8 @@ export class IntegrationDetailComponent implements OnInit {
   public registrantsData: any;
   public transactions: any;
   public breadcrumbs = [
-    { url: '/inicio', title: 'Inicio' },
-    { url: '/integraciones', title: 'Integraciones' },
+    { url: '/admin/inicio', title: 'Inicio' },
+    { url: '/admin/integraciones', title: 'Integraciones' },
     { url: '', title: '' }
   ];
 

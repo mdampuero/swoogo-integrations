@@ -10,25 +10,41 @@ import { IntegrationFormComponent } from './pages/integration/integration-form/i
 import { IntegrationDetailComponent } from './pages/integration/integration-detail/integration-detail.component';
 import { UsersComponent } from './pages/users/users.component';
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
+import { FeHomeComponent } from './pages/feHome/feHome.component';
+import { EventComponent } from './pages/event/event.component';
+import { EventFormComponent } from './pages/event/event-form/event-form.component';
+import { CategoryComponent } from './pages/category/category.component';
+import { CategoryFormComponent } from './pages/category/category-form/category-form.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent},
+  { path: 'admin/login', component: LoginComponent},
+  { path: 'admin/inicio', component: HomeComponent,canActivate:[AuthGuard]},
+  { path: 'admin', component: HomeComponent,canActivate:[AuthGuard]},
+  { path: 'admin/demos', component: DemoComponent,canActivate:[AuthGuard]},
+  { path: 'admin/demos/nuevo', component: DemoFormComponent ,canActivate:[AuthGuard]},
+  { path: 'admin/demos/editar/:id', component: DemoFormComponent ,canActivate:[AuthGuard]},
   
-  { path: 'demos', component: DemoComponent,canActivate:[AuthGuard]},
-  { path: 'demos/nuevo', component: DemoFormComponent ,canActivate:[AuthGuard]},
-  { path: 'demos/editar/:id', component: DemoFormComponent ,canActivate:[AuthGuard]},
+  { path: 'admin/events', component: EventComponent,canActivate:[AuthGuard]},
+  { path: 'admin/events/nuevo', component: EventFormComponent ,canActivate:[AuthGuard]},
+  { path: 'admin/events/editar/:id', component: EventFormComponent ,canActivate:[AuthGuard]},
   
-  { path: 'usuarios', component: UsersComponent,canActivate:[AuthGuard]},
-  { path: 'usuarios/nuevo', component: UsersFormComponent ,canActivate:[AuthGuard]},
-  { path: 'usuarios/editar/:id', component: UsersFormComponent ,canActivate:[AuthGuard]},
+  { path: 'admin/categories', component: CategoryComponent,canActivate:[AuthGuard]},
+  { path: 'admin/categories/nuevo', component: CategoryFormComponent ,canActivate:[AuthGuard]},
+  { path: 'admin/categories/editar/:id', component: CategoryFormComponent ,canActivate:[AuthGuard]},
   
-  { path: 'integraciones', component: IntegrationComponent,canActivate:[AuthGuard]},
-  { path: 'integraciones/nuevo', component: IntegrationFormComponent ,canActivate:[AuthGuard]},
-  { path: 'integraciones/:id', component: IntegrationDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'integraciones/editar/:id', component: IntegrationFormComponent ,canActivate:[AuthGuard]},
+  { path: 'admin/usuarios', component: UsersComponent,canActivate:[AuthGuard]},
+  { path: 'admin/usuarios/nuevo', component: UsersFormComponent ,canActivate:[AuthGuard]},
+  { path: 'admin/usuarios/editar/:id', component: UsersFormComponent ,canActivate:[AuthGuard]},
   
-  { path: '', pathMatch:'full', component: HomeComponent,canActivate:[AuthGuard]},
-  { path: '**', pathMatch:'full', component: HomeComponent,canActivate:[AuthGuard]},
+  { path: 'admin/integraciones', component: IntegrationComponent,canActivate:[AuthGuard]},
+  { path: 'admin/integraciones/nuevo', component: IntegrationFormComponent ,canActivate:[AuthGuard]},
+  { path: 'admin/integraciones/:id', component: IntegrationDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'admin/integraciones/editar/:id', component: IntegrationFormComponent ,canActivate:[AuthGuard]},
+  
+  { path: '', pathMatch:'full', component: FeHomeComponent},
+  { path: '**', pathMatch:'full', component: FeHomeComponent},
+
+
 ];
 
 @NgModule({

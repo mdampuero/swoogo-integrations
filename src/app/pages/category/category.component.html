@@ -1,5 +1,5 @@
 <div class="container-fluid animated fadeIn">
-    <app-breadcrumb [title]="'Demos'" [breadcrumbs]="breadcrumbs" ></app-breadcrumb>
+    <app-breadcrumb [title]="'Catgeorías'" [breadcrumbs]="breadcrumbs" ></app-breadcrumb>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -17,7 +17,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="text-right animated fadeInRight">
-                                <app-pagination  [total]="data.recordsFiltered" [limit]="demoService.limit" [pages]="data.pages"></app-pagination>
+                                <app-pagination  [total]="data.recordsFiltered" [limit]="categoryService.limit" [pages]="data.pages"></app-pagination>
                             </div>
                         </div>
                     </div>
@@ -25,11 +25,11 @@
                         <table class="table table-hover table-striped table-bordered mt-3">
                             <thead>
                                 <tr>
-                                    <th (click)="demoService.setOrder('name')">
-                                        <app-table-th [title]="'Nombre'" [field]="'name'" [sort]="demoService.sort" [direction]="demoService.direction"></app-table-th>
+                                    <th (click)="categoryService.setOrder('name')">
+                                        <app-table-th [title]="'Nombre'" [field]="'name'" [sort]="categoryService.sort" [direction]="categoryService.direction"></app-table-th>
                                     </th>
-                                    <th (click)="demoService.setOrder('description')">
-                                        <app-table-th [title]="'Descripción'" [field]="'description'" [sort]="demoService.sort" [direction]="demoService.direction"></app-table-th>
+                                    <th (click)="categoryService.setOrder('inHome')">
+                                        <app-table-th [title]="'Home'" [field]="'inHome'" [sort]="categoryService.sort" [direction]="categoryService.direction"></app-table-th>
                                     </th>
                                     <th></th>
                                 </tr>
@@ -37,9 +37,9 @@
                             <tbody>
                                 <tr *ngFor="let item of data.data; let i=index;">
                                     <td>{{ item.name }}</td>
-                                    <td>{{ item.description }}</td>
+                                    <td [innerHTML]="item.inHome | badgeBinary"></td>
                                     <td class="text-right">
-                                        <a matTooltip="Editar" matTooltipPosition="above" role="button" [routerLink]="['/admin/demos/editar', item.id]"  class="btn-edit btn btn-outline-info btn-xs mr-1"><i class="fa fa-pencil text-info"></i></a> 
+                                        <a matTooltip="Editar" matTooltipPosition="above" role="button" [routerLink]="['/admin/categories/editar', item.id]"  class="btn-edit btn btn-outline-info btn-xs mr-1"><i class="fa fa-pencil text-info"></i></a> 
                                         <a matTooltip="Eliminar" matTooltipPosition="above" role="button" (click)="remove(i)" class="btn-remove btn btn-outline-danger btn-xs"><i class="fa fa-trash text-danger"></i></a>
                                     </td>
                                 </tr>
@@ -48,7 +48,7 @@
                         <div class="float-left">
                             <app-count-results [total]="data.total"></app-count-results>
                         </div>
-                        <app-pagination  [limit]="demoService.limit" [pages]="data.pages"></app-pagination>
+                        <app-pagination  [limit]="categoryService.limit" [pages]="data.pages"></app-pagination>
                     </div>
                 </div>
             </div>

@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { DemoService } from 'src/app/services/api/demo.service';
+import { CategoryService } from 'src/app/services/api/category.service';
 import { msgErrors } from 'src/app/services/msgErrors.service';
 // import * as $ from 'jquery';
 import {Router, ActivatedRoute} from '@angular/router';
-import { Demo } from 'src/app/models/demo.model';
+import { Category } from 'src/app/models/category.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ToastrService } from 'ngx-toastr';
 @Component({
-  selector: 'app-demo-form',
-  templateUrl: './demo-form.component.html'
+  selector: 'app-category-form',
+  templateUrl: './category-form.component.html'
 })
-export class DemoFormComponent implements OnInit {
-  public form: Demo={
+export class CategoryFormComponent implements OnInit {
+  public form: Category={
     id:'',
     name:'',
-    description:''
+    inHome: 0,
   };
   public titlePage:string='Nuevo';
 
   public breadcrumbs=[
     {url:'/admin/inicio',title:'Inicio'},
-    {url:'/admin/demos',title:'Demos'},
+    {url:'/admin/categories',title:'Categorías'},
     {url:'',title:'Nuevo'}
   ];
 
@@ -32,7 +32,7 @@ export class DemoFormComponent implements OnInit {
     private router: Router,
     private _snackBar: MatSnackBar,
     private activatedRoute: ActivatedRoute,
-    public demoService: DemoService) {
+    public categoryService: CategoryService) {
       let id=this.activatedRoute.snapshot.paramMap.get('id');
       if(id){
         this.getOne(id);
@@ -43,9 +43,10 @@ export class DemoFormComponent implements OnInit {
 
   getOne(id:string){
     this.spinner.show();
-    this.demoService.getOne(id).subscribe(
+    this.categoryService.getOne(id).subscribe(
       (data:any) => {
-        this.form=data.demo;
+        this.form=data.category;
+        this.form.inHome = (data.category.inHome) ? 1 : 0
         this.spinner.hide();
       },
       () => this.spinner.hide()
@@ -58,10 +59,10 @@ export class DemoFormComponent implements OnInit {
 
   save(form:NgForm){
     this.spinner.show();
-    this.demoService.save(this.form).subscribe(
+    this.categoryService.save(this.form).subscribe(
       (data:any) => {
         this._snackBar.open('Registro creado','Aceptar', { duration: 3000 });
-        this.router.navigate(['/admin/demos']);
+        this.router.navigate(['/admin/categories']);
       },
       (error) => this._msgErrors.show(error)
     );
