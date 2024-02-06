@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ToastrService } from 'ngx-toastr';
 import { IntegrationService } from 'src/app/services/api/integration.service';
 import { Integration } from 'src/app/models/integration.model';
-import { EventService } from 'src/app/services/api/event.service';
+import { EventSwoogoService } from 'src/app/services/api/eventSwoogo.service';
 import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-integration-form',
@@ -47,8 +47,8 @@ export class IntegrationFormComponent implements OnInit {
   public titlePage: string = 'Nuevo';
 
   public breadcrumbs = [
-    { url: '/inicio', title: 'Inicio' },
-    { url: '/integraciones', title: 'Integrations' },
+    { url: '/admin/inicio', title: 'Inicio' },
+    { url: '/admin/integraciones', title: 'Integrations' },
     { url: '', title: 'Nuevo' }
   ];
 
@@ -59,7 +59,7 @@ export class IntegrationFormComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private activatedRoute: ActivatedRoute,
     public integrationService: IntegrationService,
-    public eventService: EventService,
+    public eventService: EventSwoogoService,
   ) {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     if (id) {

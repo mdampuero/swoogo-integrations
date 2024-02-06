@@ -13,7 +13,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class DemoComponent implements OnInit {
   public data:any={ };
   public query:string='';
-  public breadcrumbs=[{url:'/home',title:'Inicio'},{url:'',title:'Demos'}];
+  public breadcrumbs=[{url:'/admin/inicio',title:'Inicio'},{url:'',title:'Demos'}];
 
   constructor(
     private spinner: NgxSpinnerService,

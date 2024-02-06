@@ -43,7 +43,7 @@
                                     <td>{{ item.email }}</td>
                                     <td class="text-center" [innerHTML]="item.isActive | badgeBinary"></td>
                                     <td class="text-center">
-                                        <a matTooltip="Editar" matTooltipPosition="above" role="button" [routerLink]="['/usuarios/editar', item.id]" href="" class="btn-edit btn-xs btn btn-outline-info mr-1"><i class="fa fa-pencil text-info"></i></a> 
+                                        <a matTooltip="Editar" matTooltipPosition="above" role="button" [routerLink]="['/admin/usuarios/editar', item.id]" href="" class="btn-edit btn-xs btn btn-outline-info mr-1"><i class="fa fa-pencil text-info"></i></a> 
                                         <a matTooltip="Eliminar" matTooltipPosition="above" role="button" (click)="remove(i)" class="btn-remove btn-xs btn btn-outline-danger"><i class="fa fa-trash text-danger"></i></a>
                                     </td>
                                 </tr>

@@ -1,5 +1,5 @@
 <div class="container-fluid animated fadeIn">
-    <app-breadcrumb [title]="'Integraciones'" [breadcrumbs]="breadcrumbs" ></app-breadcrumb>
+    <app-breadcrumb [title]="'Eventos'" [breadcrumbs]="breadcrumbs" ></app-breadcrumb>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -17,7 +17,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="text-right animated fadeInRight">
-                                <app-pagination  [total]="data.recordsFiltered" [limit]="integrationService.limit" [pages]="data.pages"></app-pagination>
+                                <app-pagination  [total]="data.recordsFiltered" [limit]="eventService.limit" [pages]="data.pages"></app-pagination>
                             </div>
                         </div>
                     </div>
@@ -25,35 +25,37 @@
                         <table class="table table-hover table-striped table-bordered mt-3">
                             <thead>
                                 <tr>
-                                    <th (click)="integrationService.setOrder('type')">
-                                        <app-table-th [title]="'Tipo'" [field]="'type'" [sort]="integrationService.sort" [direction]="integrationService.direction"></app-table-th>
+                                    <th (click)="eventService.setOrder('category.name')">
+                                        <app-table-th [title]="'Categoría'" [field]="'category.name'" [sort]="eventService.sort" [direction]="eventService.direction"></app-table-th>
                                     </th>
-                                    <th (click)="integrationService.setOrder('event_id')">
-                                        <app-table-th [title]="'Evento'" [field]="'event_id'" [sort]="integrationService.sort" [direction]="integrationService.direction"></app-table-th>
+                                    <th (click)="eventService.setOrder('name')">
+                                        <app-table-th [title]="'Nombre'" [field]="'name'" [sort]="eventService.sort" [direction]="eventService.direction"></app-table-th>
                                     </th>
-                                    <th (click)="integrationService.setOrder('item_currency')">
-                                        <app-table-th [title]="'Moneda'" [field]="'item_currency'" [sort]="integrationService.sort" [direction]="integrationService.direction"></app-table-th>
+                                    <th (click)="eventService.setOrder('isActive')">
+                                        <app-table-th [title]="'Activo'" [field]="'isActive'" [sort]="eventService.sort" [direction]="eventService.direction"></app-table-th>
                                     </th>
-                                    <th (click)="integrationService.setOrder('isActive')">
-                                        <app-table-th [title]="'Activo'" [field]="'isActive'" [sort]="integrationService.sort" [direction]="integrationService.direction"></app-table-th>
+                                    <th (click)="eventService.setOrder('inHome')">
+                                        <app-table-th [title]="'Home'" [field]="'inHome'" [sort]="eventService.sort" [direction]="eventService.direction"></app-table-th>
                                     </th>
-                                    <th (click)="integrationService.setOrder('created_at')">
-                                        <app-table-th [title]="'Creada'" [field]="'created_at'" [sort]="integrationService.sort" [direction]="integrationService.direction"></app-table-th>
+                                    <th (click)="eventService.setOrder('inSwoogo')">
+                                        <app-table-th [title]="'Evento de Swoogo'" [field]="'inSwoogo'" [sort]="eventService.sort" [direction]="eventService.direction"></app-table-th>
+                                    </th>
+                                    <th (click)="eventService.setOrder('created_at')">
+                                        <app-table-th [title]="'Creada'" [field]="'created_at'" [sort]="eventService.sort" [direction]="eventService.direction"></app-table-th>
                                     </th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let item of data.data; let i=index;">
-                                    <td>{{ item.type | translate }}</td>
-                                    <!-- <td>{{ item.item_title | truncate:[50,'...'] }}</td> -->
-                                    <td>{{ item.event.name }}</td>
-                                    <td>{{ item.item_currency | translate }}</td>
+                                    <td>{{ item.category.name }}</td>
+                                    <td>{{ item.name }}</td>
                                     <td [innerHTML]="item.isActive | badgeBinary"></td>
+                                    <td [innerHTML]="item.inHome | badgeBinary"></td>
+                                    <td [innerHTML]="item.inSwoogo | badgeBinary"></td>
                                     <td>{{ item.created_at | date: 'dd/MM/yyyy HH:mm' }}</td>
                                     <td class="text-right">
-                                        <a matTooltip="Detalle" matTooltipPosition="above" role="button" [routerLink]="['/admin/integraciones', item.id]"  class="btn btn-outline-success btn-xs mr-1"><i class="fa fa-eye text-succes"></i></a> 
-                                        <a matTooltip="Editar" matTooltipPosition="above" role="button" [routerLink]="['/admin/integraciones/editar', item.id]"  class="btn btn-outline-info btn-xs mr-1"><i class="fa fa-pencil text-info"></i></a> 
+                                        <a matTooltip="Editar" matTooltipPosition="above" role="button" [routerLink]="['/admin/events/editar', item.id]"  class="btn-edit btn btn-outline-info btn-xs mr-1"><i class="fa fa-pencil text-info"></i></a> 
                                         <a matTooltip="Eliminar" matTooltipPosition="above" role="button" (click)="remove(i)" class="btn-remove btn btn-outline-danger btn-xs"><i class="fa fa-trash text-danger"></i></a>
                                     </td>
                                 </tr>
@@ -62,7 +64,7 @@
                         <div class="float-left">
                             <app-count-results [total]="data.total"></app-count-results>
                         </div>
-                        <app-pagination  [limit]="integrationService.limit" [pages]="data.pages"></app-pagination>
+                        <app-pagination  [limit]="eventService.limit" [pages]="data.pages"></app-pagination>
                     </div>
                 </div>
             </div>

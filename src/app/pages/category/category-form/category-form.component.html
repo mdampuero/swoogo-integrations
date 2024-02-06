@@ -15,16 +15,19 @@
                                     <input type="text" class="form-control" [(ngModel)]="form.name" name="name" placeholder="">
                                 </div>
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-2">
                                 <div class="form-group">
-                                    <label>Descripción</label>
-                                    <textarea class="form-control" [(ngModel)]="form.description" name="description" rows="5"></textarea>
+                                    <label>Home</label>
+                                    <select class="form-control" [(ngModel)]="form.inHome" name="inHome">
+                                        <option value="1">SI</option>
+                                        <option value="0">NO</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div class="animated fadeInUp">
                             <button type="submit" class="btn btn-success waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar</button>
-                            <a role="button" routerLink="/admin/demos" type="button" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-remove"></i> Cancelar</a>
+                            <a role="button" routerLink="/admin/categories" type="button" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-remove"></i> Cancelar</a>
                         </div>
                     </form>
                 </div>

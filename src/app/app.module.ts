@@ -9,9 +9,11 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TestComponent } from './components/test/test.component';
 import { DemoComponent } from './pages/demo/demo.component';
+import { DemoFormComponent } from './pages/demo/demo-form/demo-form.component';
+import { EventComponent } from './pages/event/event.component';
 import { IntegrationComponent } from './pages/integration/integration.component';
 import { FormsModule } from '@angular/forms';
-import { DemoFormComponent } from './pages/demo/demo-form/demo-form.component';
+import { EventFormComponent } from './pages/event/event-form/event-form.component';
 import { IntegrationFormComponent } from './pages/integration/integration-form/integration-form.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -19,6 +21,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatNativeDateModule } from '@angular/material/core';
 import { LoginComponent } from './pages/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -31,6 +34,7 @@ import { FormatNumberPipe } from './pipes/format-number.pipe';
 import { IntegrationDetailComponent } from './pages/integration/integration-detail/integration-detail.component';
 import { BadgeStatusPipe } from './pipes/badge-status.pipe';
 import { HomeComponent } from './pages/home/home.component';
+import { FeHomeComponent } from './pages/feHome/feHome.component';
 import { UsersComponent } from './pages/users/users.component';
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 // import ngx-translate and the http loader
@@ -38,6 +42,9 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BadgeBinaryPipe } from './pipes/badge-binary.pipe';
 import { BtnCopyComponent } from './components/btn-copy/btn-copy.component';
+import { CategoryComponent } from './pages/category/category.component';
+import { CategoryFormComponent } from './pages/category/category-form/category-form.component';
+
 
 @NgModule({
   declarations: [
@@ -46,12 +53,15 @@ import { BtnCopyComponent } from './components/btn-copy/btn-copy.component';
     BreadcrumbComponent,
     TestComponent,
     DemoComponent,
+    EventComponent,
     HomeComponent,
+    FeHomeComponent,
     IntegrationComponent,
     IntegrationFormComponent,
     IntegrationDetailComponent,
     TableThComponent,
     DemoFormComponent,
+    EventFormComponent,
     
     LoginComponent,
     PaginationComponent,
@@ -63,7 +73,9 @@ import { BtnCopyComponent } from './components/btn-copy/btn-copy.component';
     UsersComponent,
     UsersFormComponent,
     BtnCopyComponent,
-    // TranslatePipe
+    // TranslatePipe,
+    CategoryComponent,
+    CategoryFormComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +93,7 @@ import { BtnCopyComponent } from './components/btn-copy/btn-copy.component';
     MatDatepickerModule,
     BrowserAnimationsModule,
     BrowserModule,
-
+    MatNativeDateModule,
     // ngx-translate and the loader module
     HttpClientModule,
     TranslateModule.forRoot({

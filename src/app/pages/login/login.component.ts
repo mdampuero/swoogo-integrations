@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       (data:any) => {
         this.loginService.login(data);
         this.spinner.hide();
-        this.router.navigate(['/inicio']);
+        this.router.navigate(['/admin/inicio']);
       },
       (error) => this._msgErrors.show(error)
     );
