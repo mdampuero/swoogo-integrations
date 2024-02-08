@@ -12,102 +12,122 @@ import { IntegrationService } from 'src/app/services/api/integration.service';
 import { Integration } from 'src/app/models/integration.model';
 import { EventSwoogoService } from 'src/app/services/api/eventSwoogo.service';
 import { forkJoin } from 'rxjs';
+import { UtilsService } from 'src/app/services/utils.service';
 @Component({
-  selector: 'app-integration-form',
-  templateUrl: './integration-form.component.html'
+	selector: 'app-integration-form',
+	templateUrl: './integration-form.component.html'
 })
 export class IntegrationFormComponent implements OnInit {
-  public form: Integration = {
-    id: '',
-    type: '',
-    description: '',
-    event_id: '',
-    event: {},
-    // item_title: '',
-    item_currency: '',
-    access_token: '',
-    // item_price: 1,
-    isActive: 1
-  };
-  public events: any;
-  public types: any = [{
-    value: 'MERCADOPAGO',
-    label: 'Mercado Pago'
-  }]
-  public currencies: any = [
-    {
-      value: 'CLP',
-      label: 'Pesos chilenos'
-    },
-    {
-      value: 'ARS',
-      label: 'Pesos argentinos'
-    }
-  ]
-  public titlePage: string = 'Nuevo';
+	public form: Integration = {
+		id: '',
+		type: '',
+		description: '',
+		event_id: '',
+		event: {},
+		item_currency: '',
+		access_token: '',
+		isActive: 1,
+		password: ''
+	};
 
-  public breadcrumbs = [
-    { url: '/admin/inicio', title: 'Inicio' },
-    { url: '/admin/integraciones', title: 'Integrations' },
-    { url: '', title: 'Nuevo' }
-  ];
+	public events: any;
+	public types: any = [
+		{
+			value: 'MERCADOPAGO',
+			label: 'Mercado Pago'
+		},
+		{
+			value: 'WEBSERVICE',
+			label: 'Web service'
+		}
+	]
+	public currencies: any = [
+		{
+			value: 'CLP',
+			label: 'Pesos chilenos'
+		},
+		{
+			value: 'ARS',
+			label: 'Pesos argentinos'
+		}
+	]
+	public titlePage: string = 'Nuevo';
 
-  constructor(
-    private _msgErrors: msgErrors,
-    private spinner: NgxSpinnerService,
-    private router: Router,
-    private _snackBar: MatSnackBar,
-    private activatedRoute: ActivatedRoute,
-    public integrationService: IntegrationService,
-    public eventService: EventSwoogoService,
-  ) {
-    let id = this.activatedRoute.snapshot.paramMap.get('id');
-    if (id) {
-      this.loadForm(id);
-      this.breadcrumbs[(this.breadcrumbs.length - 1)].title = 'Editar';
-      this.titlePage = 'Editar';
-    } else {
-      this.loadForm('');
-    }
-  }
+	public breadcrumbs = [
+		{ url: '/admin/inicio', title: 'Inicio' },
+		{ url: '/admin/integraciones', title: 'Integrations' },
+		{ url: '', title: 'Nuevo' }
+	];
 
-  loadForm(id: any) {
-    this.spinner.show();
-    if (id) {
-      forkJoin({
-        events: this.eventService.getAll(),
-        integration: this.integrationService.getOne(id)
-      }).subscribe({
-        next: (data: any) => {
-          this.form = data.integration.integration;
-          this.events = data.events.data;
-          this.form.isActive = (data.integration.integration.isActive) ? 1 : 0
-        },
-        complete: () => this.spinner.hide()
-      });
-    } else {
-      this.eventService.getAll().subscribe({
-        next: (data: any) => this.events = data.data,
-        complete: () => this.spinner.hide()
-      });
-    }
-  }
+	constructor(
+		private _msgErrors: msgErrors,
+		private spinner: NgxSpinnerService,
+		private router: Router,
+		private _snackBar: MatSnackBar,
+		private activatedRoute: ActivatedRoute,
+		public integrationService: IntegrationService,
+		public eventService: EventSwoogoService,
+		public utilsService: UtilsService
+	) {
+		let id = this.activatedRoute.snapshot.paramMap.get('id');
+		if (id) {
+			this.loadForm(id);
+			this.breadcrumbs[(this.breadcrumbs.length - 1)].title = 'Editar';
+			this.titlePage = 'Editar';
+		} else {
+			this.loadForm('');
+		}
+	}
 
+	loadForm(id: any) {
+		this.spinner.show();
+		if (id) {
+			forkJoin({
+				events: this.eventService.getAll(),
+				integration: this.integrationService.getOne(id)
+			}).subscribe({
+				next: (data: any) => {
+					this.form = data.integration.integration;
+					this.events = data.events.data;
+					this.form.isActive = (data.integration.integration.isActive) ? 1 : 0
+				},
+				complete: () => this.spinner.hide()
+			});
+		} else {
+			this.eventService.getAll().subscribe({
+				next: (data: any) => this.events = data.data,
+				complete: () => this.spinner.hide()
+			});
+		}
+	}
 
-  ngOnInit(): void {
+	typeChange(event: any) {
+		const selectedValue = event.target.value;
+		switch (selectedValue) {
+			case 'WEBSERVICE':
+				this.generatePassword();
+				break;
+		}
+	}
 
-  }
+	generatePassword(){
+		this.form.access_token = this.utilsService.generatePassword()
+	}
 
-  save(form: NgForm) {
-    this.spinner.show();
-    this.form.event = this.events.find((e: { id: string; }) => e.id == this.form.event_id);
-    this.integrationService.save(this.form).subscribe(
-      (data: any) => {
-        this._snackBar.open('Registro creado', 'Aceptar', { duration: 3000 });
-        this.router.navigate(['/integraciones']);
-      },
-      (error) => this._msgErrors.show(error)
-    );
-  }
+	ngOnInit(): void {
+
+	}
+
+	save(form: NgForm) {
+		this.spinner.show();
+		this.form.event = this.events.find((e: { id: string; }) => e.id == this.form.event_id);
+		this.integrationService.save(this.form).subscribe(
+			(data: any) => {
+				this._snackBar.open('Registro creado', 'Aceptar', { duration: 3000 });
+				this.router.navigate(['/admin/integraciones']);
+			},
+			(error) => this._msgErrors.show(error)
+		);
+	}
 
 }

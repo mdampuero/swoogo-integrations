@@ -21,51 +21,59 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Tipo *</label>
-                                    <select class="form-control" [(ngModel)]="form.type" name="type">
+                                    <select class="form-control" [(ngModel)]="form.type" name="type" (change)="typeChange($event)">
                                         <option value=''>--Seleccione una opción--</option>
                                         <option value="{{ type.value }}" *ngFor="let type of types; let i=index;" >{{ type.label }}</option>
                                     </select>
                                 </div>
                             </div>
                             <ng-container *ngIf="form.type == 'MERCADOPAGO'">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Access Token *</label>
-                                    <input type="text" class="form-control" [(ngModel)]="form.access_token" name="access_token" placeholder="">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Access Token *</label>
+                                        <input type="text" class="form-control" [(ngModel)]="form.access_token" name="access_token" placeholder="">
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Título del ítem *</label>
-                                    <input type="text" class="form-control" [(ngModel)]="form.item_title" name="item_title" placeholder="">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>Moneda *</label>
+                                        <select class="form-control" [(ngModel)]="form.item_currency" name="item_currency">
+                                            <option value=''>--Seleccione una opción--</option>
+                                            <option value="{{ currency.value }}" *ngFor="let currency of currencies; let i=index;" >{{ currency.label }} ({{ currency.value }})</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div> -->
-                            
-                            <!-- 
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label>Precio</label>
-                                    <input type="text" class="form-control" [(ngModel)]="form.item_price" name="item_price" placeholder="">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>Activo</label>
+                                        <select class="form-control" [(ngModel)]="form.isActive" name="isActive">
+                                            <option value="1">SI</option>
+                                            <option value="0">NO</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div> -->
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label>Moneda *</label>
-                                    <select class="form-control" [(ngModel)]="form.item_currency" name="item_currency">
-                                        <option value=''>--Seleccione una opción--</option>
-                                        <option value="{{ currency.value }}" *ngFor="let currency of currencies; let i=index;" >{{ currency.label }} ({{ currency.value }})</option>
-                                    </select>
+                            </ng-container>
+                            <ng-container *ngIf="form.type == 'WEBSERVICE'">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Access Token *</label>
+                                        <input type="text" class="form-control" [(ngModel)]="form.access_token" name="access_token" placeholder="">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label>Activo</label>
-                                    <select class="form-control" [(ngModel)]="form.isActive" name="isActive">
-                                        <option value="1">SI</option>
-                                        <option value="0">NO</option>
-                                    </select>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <button type="button" class="mt-2 btn-sm btn btn-info" (click)="generatePassword()">Regenerar token</button>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>Activo</label>
+                                        <select class="form-control" [(ngModel)]="form.isActive" name="isActive">
+                                            <option value="1">SI</option>
+                                            <option value="0">NO</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </ng-container>
                             <div class="col-sm-12">
                                 <div class="form-group">

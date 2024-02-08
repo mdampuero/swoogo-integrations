@@ -8,7 +8,7 @@
             </h3>
             <hr>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div class="card bg-light">
                         <h4 class="card-header bg-info text-white"><b>Datos de la integración</b></h4>
                         <div class="card-body">
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <div class="card bg-light">
                         <h4 class="card-header bg-success text-white"><b>Configuración</b></h4>
                         <div class="card-body">
@@ -31,80 +31,60 @@
                 </div>
             </div>
             
-
-            <div class="card bg-light">
-                <h4 class="card-header bg-warning text-white">
-                    <b>SDK</b>
-                    <app-btn-copy [text]="sdkString"></app-btn-copy>
-                </h4>
-                <div class="card-body">
-                    <p>{{ sdkString  }}</p>
+            <ng-container *ngIf="data.type == 'MERCADOPAGO'">
+                <div class="card bg-light">
+                    <h4 class="card-header bg-warning text-white">
+                        <b>SDK</b>
+                        <app-btn-copy [text]="sdkString"></app-btn-copy>
+                    </h4>
+                    <div class="card-body">
+                        <p>{{ sdkString  }}</p>
+                    </div>
                 </div>
-            </div>
-            <!-- <div class="card bg-light">
-                <h4 class="card-header bg-primary text-white"><b>Registrados</b></h4>
-                <div class="card-body">
-                    <table class="table table-hover table-striped table-bordered " *ngIf="registrantsData">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Teléfono</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let item of registrantsData.data; let i=index;">
-                                <td>{{ item.id}}</td>
-                                <td>{{ item.first_name }} {{ item.last_name }}</td>
-                                <td>{{ item.email }}</td>
-                                <td>{{ item.rmobile_phone }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="card bg-light">
+                    <h4 class="card-header bg-primary text-white"><b>Transacciones</b></h4>
+                    <div class="card-body">
+                        <table class="table table-hover table-bordered ">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Estado</th>
+                                    <th>Monto</th>
+                                    <th>Registrantes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of data.transactions; let i=index;">
+                                    <td>{{ item.created_at | date:"dd/MM/Y HH:mm" }}</td>
+                                    <td [innerHTML]="item.status| badgeStatus"></td>
+                                    <td><ng-container *ngIf="item.response">{{ item.response.body.currency_id}} {{ item.amount | formatNumber }}</ng-container></td>
+                                    <td>
+                                        <table class="table-condensed">
+                                            <tr *ngFor="let registrant of item.registrants; let i=index;">
+                                                <td>{{ registrant.swoogo_id }}</td>
+                                                <td><a href="mailto:{{ registrant.email }}">{{ registrant.email }}</a></td>
+                                                <td><ng-container *ngIf="registrant.swoogo_data">{{ registrant.swoogo_data.first_name }} {{ registrant.swoogo_data.last_name }}</ng-container></td>
+                                                <td><ng-container *ngIf="item.response">{{ item.response.body.currency_id}}</ng-container> {{ registrant.price | formatNumber }}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div> -->
-            <div class="card bg-light">
-                <h4 class="card-header bg-primary text-white"><b>Transacciones</b></h4>
-                <div class="card-body">
-                    <table class="table table-hover table-bordered ">
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Estado</th>
-                                <!-- <th>Ítem</th> -->
-                                <th>Monto</th>
-                                <!-- <th>Método</th> -->
-                                <th>Registrantes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let item of data.transactions; let i=index;">
-                                <td>{{ item.created_at | date:"dd/MM/Y HH:mm" }}</td>
-                                <td [innerHTML]="item.status| badgeStatus"></td>
-                                <!-- <td>{{ item.registrant.package_id.value }}</td> -->
-                                <td><ng-container *ngIf="item.response">{{ item.response.body.currency_id}} {{ item.amount | formatNumber }}</ng-container></td>
-                                <!-- <td>{{ item.registrant.id }}</td>
-                                <td>{{ item.registrant.first_name }} {{ item.registrant.last_name }}</td>
-                                <td>{{ item.registrant.email }}</td> -->
-                                <!-- <td  *ngIf="item.response">{{ item.response.body.payment_type_id | translate}}</td> -->
-                                <td>
-                                    <table class="table-condensed">
-                                        <tr *ngFor="let registrant of item.registrants; let i=index;">
-                                            <td>{{ registrant.swoogo_id }}</td>
-                                            <td><a href="mailto:{{ registrant.email }}">{{ registrant.email }}</a></td>
-                                            <td><ng-container *ngIf="registrant.swoogo_data">{{ registrant.swoogo_data.first_name }} {{ registrant.swoogo_data.last_name }}</ng-container></td>
-                                            <!-- <td>{{ registrant.name }}</td>
-                                            <td>{{ registrant.description }}</td> -->
-                                            <td><ng-container *ngIf="item.response">{{ item.response.body.currency_id}}</ng-container> {{ registrant.price | formatNumber }}</td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            </ng-container>
+            <ng-container *ngIf="data.type == 'WEBSERVICE'">
+                <div class="card bg-light">
+                    <h4 class="card-header bg-warning text-white">
+                        <b>Documentación</b>
+                        <app-btn-copy [text]="sdkString"></app-btn-copy>
+                    </h4>
+                    <div class="card-body">
+                        <p>{{ sdkString  }}</p>
+                    </div>
                 </div>
-            </div>
+            </ng-container>
         </div>
     </div>
 </div>
