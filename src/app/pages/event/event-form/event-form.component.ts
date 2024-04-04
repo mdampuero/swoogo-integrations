@@ -146,6 +146,7 @@ export class EventFormComponent implements OnInit {
 				next: (data: any) => {
 					this.categories = data.category.data;
 					this.eventsSwoogo = data.swoogo.data;
+					this.dataReady = true;
 				},
 				complete: () => this.spinner.hide()
 			});
