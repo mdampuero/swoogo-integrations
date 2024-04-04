@@ -25,15 +25,19 @@
               "src/assets"
             ],
             "styles": [
+              "mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css",
               "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/css/colors/default-dark.css",
               "src/assets/css/pages/login-register-lock.css",
-              "src/assets/css/style.css"
+              "node_modules/dropify/dist/css/dropify.min.css",
+              "src/assets/css/style.css",
+              "mapbox-gl/dist/mapbox-gl.css"
             ],
             "scripts": [
               "src/assets/plugins/jquery/jquery.min.js",
+              "node_modules/dropify/dist/js/dropify.min.js",
               "src/assets/plugins/bootstrap/js/popper.min.js",
               "src/assets/plugins/bootstrap/js/bootstrap.min.js",
               "src/assets/js/perfect-scrollbar.jquery.min.js",

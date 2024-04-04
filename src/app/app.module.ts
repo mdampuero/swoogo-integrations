@@ -21,7 +21,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { LoginComponent } from './pages/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -45,6 +45,10 @@ import { BtnCopyComponent } from './components/btn-copy/btn-copy.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { CategoryFormComponent } from './pages/category/category-form/category-form.component';
 
+import { CardPictureComponent } from './components/card-picture/card-picture.component';
+import { InputFileComponent } from './components/input-file/input-file.component';
+import { SettingComponent } from './pages/setting/setting.component';
+import { MapboxComponent } from './components/mapbox/mapbox.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +57,7 @@ import { CategoryFormComponent } from './pages/category/category-form/category-f
     BreadcrumbComponent,
     TestComponent,
     DemoComponent,
+    SettingComponent,
     EventComponent,
     HomeComponent,
     FeHomeComponent,
@@ -75,7 +80,10 @@ import { CategoryFormComponent } from './pages/category/category-form/category-f
     BtnCopyComponent,
     // TranslatePipe,
     CategoryComponent,
-    CategoryFormComponent
+    CategoryFormComponent,
+    CardPictureComponent,
+    InputFileComponent,
+    MapboxComponent,
   ],
   imports: [
     BrowserModule,

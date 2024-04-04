@@ -37,6 +37,9 @@ export class EventService {
     
     return this.http.get(`${environment.baseBEUrl}/api/events?search=${query}&offset=${this.offset}&limit=${this.limit}&sort=${this.sort}&direction=${this.direction}`, this.login.createAuthorizationHeader());
   }
+  getHome() {
+    return this.http.get(`${environment.baseBEUrl}/api/events/sliderHome`);
+  }
   stats() {
     return this.http.get(`${environment.baseBEUrl}/api/events/stats/get`,this.login.createAuthorizationHeader());
   }

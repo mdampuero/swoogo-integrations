@@ -8,3 +8,7 @@
 .mt-2{
     margin-top: 2rem;
 }
+#map {
+    width: 100%; /* o un tamaño específico en píxeles */
+    height: 400px; /* o un tamaño específico en píxeles */
+  }

@@ -15,11 +15,14 @@ import { EventComponent } from './pages/event/event.component';
 import { EventFormComponent } from './pages/event/event-form/event-form.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { CategoryFormComponent } from './pages/category/category-form/category-form.component';
+import { SettingComponent } from './pages/setting/setting.component';
 
 const routes: Routes = [
   { path: 'admin/login', component: LoginComponent},
   { path: 'admin/inicio', component: HomeComponent,canActivate:[AuthGuard]},
   { path: 'admin', component: HomeComponent,canActivate:[AuthGuard]},
+  { path: 'admin/setting', component: SettingComponent,canActivate:[AuthGuard]},
+
   { path: 'admin/demos', component: DemoComponent,canActivate:[AuthGuard]},
   { path: 'admin/demos/nuevo', component: DemoFormComponent ,canActivate:[AuthGuard]},
   { path: 'admin/demos/editar/:id', component: DemoFormComponent ,canActivate:[AuthGuard]},

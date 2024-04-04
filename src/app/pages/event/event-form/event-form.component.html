@@ -1,12 +1,11 @@
 <div class="container-fluid animated fadeIn">
     <app-breadcrumb [title]="'Eventos'" [breadcrumbs]="breadcrumbs"></app-breadcrumb>
-        
+
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title animated fadeInDown">{{ breadcrumbs[(breadcrumbs.length-1)].title }}</h4>
-                    <!-- <h6 class="card-subtitle">Just add <code>form-material</code> class to the form that's it.</h6> -->
                     <form class="form-material m-t-40" (ngSubmit)="save(demo)" #demo="ngForm">
                         <div class="row">
                             <div class="col-sm-4">
@@ -14,7 +13,8 @@
                                     <label>Categoría *</label>
                                     <select class="form-control" [(ngModel)]="form.category" name="category">
                                         <option value=''>--Seleccione una opción--</option>
-                                        <option value="{{ item.id }}" *ngFor="let item of categories; let i=index;" >{{ item.name }}</option>
+                                        <option value="{{ item.id }}" *ngFor="let item of categories; let i=index;">{{
+                                            item.name }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -30,11 +30,13 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Evento Swoogo*</label>
-                                    <select class="form-control"  name="event" [(ngModel)]="form.eventSwoogo" *ngIf="form.inSwoogo == 1" (change)="onSelectEvent()">
+                                    <select class="form-control" name="event" [(ngModel)]="form.eventSwoogo"
+                                        *ngIf="form.inSwoogo == 1" (change)="onSelectEvent()">
                                         <option value=''>--Seleccione una opción--</option>
-                                        <option value="{{ item.id }}" *ngFor="let item of eventsSwoogo; let i=index;" >{{ item.name }}</option>
+                                        <option value="{{ item.id }}" *ngFor="let item of eventsSwoogo; let i=index;">{{
+                                            item.name }}</option>
                                     </select>
-                                    <select class="form-control"  name="event" *ngIf="form.inSwoogo == 0" disabled>
+                                    <select class="form-control" name="event" *ngIf="form.inSwoogo == 0" disabled>
                                         <option value=''></option>
                                     </select>
                                 </div>
@@ -42,15 +44,17 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>Nombre</label>
-                                    <input type="text" class="form-control" [(ngModel)]="form.name" name="name" placeholder="">
+                                    <input type="text" class="form-control" [(ngModel)]="form.name" name="name"
+                                        placeholder="">
                                 </div>
                             </div>
                             <div class="col-sm-2">
                                 <div class="form-group">
                                     <label>Fecha inicio</label>
                                     <mat-form-field>
-                                        <input name="date_start" readonly (click)="pickerStart.open()" matInput class="form-control" [matDatepicker]="pickerStart" 
-                                        placeholder="Seleccione" [(ngModel)]="datePickerStart">
+                                        <input name="date_start" readonly (click)="pickerStart.open()" matInput
+                                            class="form-control" [matDatepicker]="pickerStart" placeholder="Seleccione"
+                                            [(ngModel)]="datePickerStart">
                                         <mat-datepicker #pickerStart></mat-datepicker>
                                     </mat-form-field>
                                 </div>
@@ -58,15 +62,17 @@
                             <div class="col-sm-2">
                                 <div class="form-group">
                                     <label>Hora inicio</label>
-                                    <input type="text" class="form-control" [(ngModel)]="form.start_time" name="start_time" placeholder="HH:MM" maxlength="5">
+                                    <input type="text" class="form-control" [(ngModel)]="form.start_time"
+                                        name="start_time" placeholder="HH:MM" maxlength="8">
                                 </div>
                             </div>
                             <div class="col-sm-2">
                                 <div class="form-group">
-                                    <label>Fecha inicio</label>
+                                    <label>Fecha fin</label>
                                     <mat-form-field>
-                                        <input name="date_end" readonly (click)="pickerEnd.open()" matInput class="form-control" [matDatepicker]="pickerEnd" 
-                                        placeholder="Seleccione" [(ngModel)]="datePickerEnd">
+                                        <input name="date_end" readonly (click)="pickerEnd.open()" matInput
+                                            class="form-control" [matDatepicker]="pickerEnd" placeholder="Seleccione"
+                                            [(ngModel)]="datePickerEnd">
                                         <mat-datepicker #pickerEnd></mat-datepicker>
                                     </mat-form-field>
                                 </div>
@@ -74,24 +80,26 @@
                             <div class="col-sm-2">
                                 <div class="form-group">
                                     <label>Hora fin</label>
-                                    <input type="text" class="form-control" [(ngModel)]="form.end_time" name="end_time" placeholder="HH:MM" maxlength="5">
+                                    <input type="text" class="form-control" [(ngModel)]="form.end_time" name="end_time"
+                                        placeholder="HH:MM" maxlength="8">
                                 </div>
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <div class="form-group">
                                     <label>Link externo</label>
-                                    <input type="text" class="form-control" [(ngModel)]="form.url" name="url" placeholder="" >
+                                    <input type="text" class="form-control" [(ngModel)]="form.url" name="url"
+                                        placeholder="">
                                 </div>
                             </div>
-                            <div class="col-sm-2">
+                            <!-- <div class="col-sm-2">
                                 <div class="form-group">
                                     <label>Activo</label>
-                                    <select class="form-control" [(ngModel)]="form.isActive" name="isActive">
+                                    <select class="form-control" [(ngModel)]="form.isActive" name="isActive" disabled>
                                         <option value="1">SI</option>
                                         <option value="0">NO</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-sm-2">
                                 <div class="form-group">
                                     <label>Home</label>
@@ -103,26 +111,92 @@
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Imagen de portada</label>
-                                    <input type="text" class="form-control" [(ngModel)]="form.pictureBackground" name="pictureBackground" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label>Imagen de card</label>
-                                    <input type="text" class="form-control" [(ngModel)]="form.pictureCard" name="pictureCard" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
                                     <label>Descripción</label>
-                                    <textarea class="form-control" [(ngModel)]="form.description" name="description" rows="5"></textarea>
+                                    <textarea class="form-control" [(ngModel)]="form.description" name="description"
+                                        rows="5"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="animated fadeInUp">
-                            <button type="submit" class="btn btn-success waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar</button>
-                            <a role="button" routerLink="/admin/events" type="button" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-remove"></i> Cancelar</a>
+                        <h4 class="card-title animated fadeInDown">Imagen de portada</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <app-card-picture [path]="tmp.pictureBackground"
+                                    [default]="'assets/images/default-background.jpg'"></app-card-picture>
+                            </div>
+                            <div class="col-sm-6">
+                                <app-input-file [maxSize]="2000" [inputName]="'pictureBackgroundBase64'"
+                                    [inputNamePreview]="'pictureBackground'"
+                                    [accept]="'image/png, image/jpeg, image/jpg'"></app-input-file>
+                                <button
+                                    *ngIf="this.form.pictureBackground || this.tmp.pictureBackground != 'assets/images/default-background.jpg'"
+                                    class="btn btn-danger btn-xs"
+                                    (click)="removePictureBackground('assets/images/default-background.jpg')"
+                                    type="button"><i class="fa fa-trash"></i> Quitar
+                                    imagen</button>
+                            </div>
+                        </div>
+                        <h4 class="card-title animated fadeInDown">Imagen de card</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <app-card-picture [path]="tmp.pictureCard"
+                                    [default]="'assets/images/default-card.jpg'"></app-card-picture>
+                            </div>
+                            <div class="col-sm-8">
+                                <app-input-file [maxSize]="2000" [inputName]="'pictureCardBase64'"
+                                    [inputNamePreview]="'pictureCard'"
+                                    [accept]="'image/png, image/jpeg, image/jpg'"></app-input-file>
+                                <button
+                                    *ngIf="this.form.pictureCard || this.tmp.pictureCard != 'assets/images/default-card.jpg'"
+                                    class="btn btn-danger btn-xs"
+                                    (click)="removePictureCard('assets/images/default-card.jpg')" type="button"><i
+                                        class="fa fa-trash"></i> Quitar
+                                    imagen</button>
+                            </div>
+                        </div>
+                        <h4 class="card-title animated fadeInDown">Ubicación</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>Latitud</label>
+                                    <input type="text" class="form-control" [(ngModel)]="form.lat" name="lat" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>Longuitud</label>
+                                    <input type="text" class="form-control" [(ngModel)]="form.lng" name="lng" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>Zoom</label>
+                                    <input type="text" class="form-control" [(ngModel)]="form.zoom" name="zoom" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <button type="button" (click)="resetMap()"
+                                        class="btn btn-secondary btn-sm waves-effect waves-light btn-block"><i
+                                            class="fa fa-trash"></i> Limpiar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-container *ngIf="dataReady">
+                            <app-mapbox [inputLat]="form?.lat" [inputLng]="form?.lng"
+                                [inputZoom]="form?.zoom"></app-mapbox>
+                        </ng-container>
+                        <div class="pt-4">
+                            <div class="animated fadeInUp">
+                                <button type="submit" class="btn btn-success waves-effect waves-light m-r-10"><i
+                                        class="fa fa-save"></i> Guardar</button>
+                                <a role="button" routerLink="/admin/events" type="button"
+                                    class="btn btn-inverse waves-effect waves-light"><i class="fa fa-remove"></i>
+                                    Cancelar</a>
+                            </div>
                         </div>
                     </form>
                 </div>

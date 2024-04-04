@@ -1,0 +1,89 @@
+<div class="container-fluid animated fadeIn">
+    <app-breadcrumb [title]="'SETTING'" [breadcrumbs]="breadcrumbs" ></app-breadcrumb>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class=" m-t-10" (ngSubmit)="save(demo)" #demo="ngForm">
+                        <div class="row form-material">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Slider 'Home'</label>
+                                    <input type="text" class="form-control" [(ngModel)]="form.max_slider_home" name="max_slider_home" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Slider de 'Categorías'</label>
+                                    <input type="text" class="form-control" [(ngModel)]="form.max_slider_categories" name="max_slider_categories" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Slider de 'Próximos eventos'</label>
+                                    <input type="text" class="form-control" [(ngModel)]="form.max_slider_last" name="max_slider_last" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Slider de 'Eventos similares'</label>
+                                    <input type="text" class="form-control" [(ngModel)]="form.max_slider_similar" name="max_slider_similar" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="card-title animated fadeInDown">Banner en 'Home'</h4>
+                        <hr>
+                        <div class="row form-material">
+                            <div class="col-sm-6">
+                                <app-card-picture [path]="tmp.banner"
+                                    [default]="'assets/images/default-background.jpg'"></app-card-picture>
+                            </div>
+                            <div class="col-sm-6">
+                                <app-input-file [maxSize]="2000"
+                                    [inputName]="'bannerBase64'" [inputNamePreview]="'banner'"
+                                    [accept]="'image/png, image/jpeg, image/jpg'"></app-input-file>
+                                <button *ngIf="this.form.banner || this.tmp.banner != 'assets/images/default-background.jpg'" class="btn btn-danger btn-xs"
+                                    (click)="removeBanner('assets/images/default-background.jpg')" type="button"><i class="fa fa-trash"></i> Quitar
+                                    imagen</button>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Link</label>
+                                    <input type="text" class="form-control" [(ngModel)]="form.banner_link" name="banner_link" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="card-title animated fadeInDown mt-4">Ordenar slider 'Home'</h4>
+                        <hr>
+                        <div class="table-responsive animated fadeInUp">
+                            <table class="table table-hover table-striped table-bordered mt-3">
+                                <thead>
+                                    <tr>
+                                        <th>Categoría</th>
+                                        <th>Nombre</th>
+                                        <th>Inicio</th>
+                                        <th>Fin</th>
+                                        <th>Orden</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of data.data; let i=index;">
+                                        <td>{{ item.category.name }}</td>
+                                        <td>{{ item.name }}</td>
+                                        <td>{{ item.start_date | date: 'dd/MM/yyyy HH:mm' }}</td>
+                                        <td>{{ item.end_date | date: 'dd/MM/yyyy HH:mm' }}</td>
+                                        <td><input type="number" class="form-control" [(ngModel)]="inputValues[i]" name="orden_{{ i }}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="animated fadeInUp mt-5">
+                            <button type="submit" class="btn btn-success waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar</button>
+                            <a role="button" routerLink="/admin/demos" type="button" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-remove"></i> Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

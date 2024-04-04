@@ -40,8 +40,11 @@
                                     <th (click)="eventService.setOrder('inSwoogo')">
                                         <app-table-th [title]="'Evento de Swoogo'" [field]="'inSwoogo'" [sort]="eventService.sort" [direction]="eventService.direction"></app-table-th>
                                     </th>
-                                    <th (click)="eventService.setOrder('created_at')">
-                                        <app-table-th [title]="'Creada'" [field]="'created_at'" [sort]="eventService.sort" [direction]="eventService.direction"></app-table-th>
+                                    <th (click)="eventService.setOrder('start_date')">
+                                        <app-table-th [title]="'Inicio'" [field]="'start_date'" [sort]="eventService.sort" [direction]="eventService.direction"></app-table-th>
+                                    </th>
+                                    <th (click)="eventService.setOrder('end_date')">
+                                        <app-table-th [title]="'Fin'" [field]="'end_date'" [sort]="eventService.sort" [direction]="eventService.direction"></app-table-th>
                                     </th>
                                     <th></th>
                                 </tr>
@@ -53,7 +56,8 @@
                                     <td [innerHTML]="item.isActive | badgeBinary"></td>
                                     <td [innerHTML]="item.inHome | badgeBinary"></td>
                                     <td [innerHTML]="item.inSwoogo | badgeBinary"></td>
-                                    <td>{{ item.created_at | date: 'dd/MM/yyyy HH:mm' }}</td>
+                                    <td>{{ item.start_date | date: 'dd/MM/yyyy HH:mm' }}</td>
+                                    <td>{{ item.end_date | date: 'dd/MM/yyyy HH:mm' }}</td>
                                     <td class="text-right">
                                         <a matTooltip="Editar" matTooltipPosition="above" role="button" [routerLink]="['/admin/events/editar', item.id]"  class="btn-edit btn btn-outline-info btn-xs mr-1"><i class="fa fa-pencil text-info"></i></a> 
                                         <a matTooltip="Eliminar" matTooltipPosition="above" role="button" (click)="remove(i)" class="btn-remove btn btn-outline-danger btn-xs"><i class="fa fa-trash text-danger"></i></a>
