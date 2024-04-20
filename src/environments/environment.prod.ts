@@ -1,6 +1,7 @@
 export const environment = {
 	production: true,
-	baseBEUrl: 'https://clickgroup-backend-production.up.railway.app',
+	// baseBEUrl: 'https://clickgroup-backend-production.up.railway.app',
+	baseBEUrl: 'http://192.168.1.137:8080',
 	mapBox: {
 		apiKey: 'pk.eyJ1IjoibWRhbXB1ZXJvIiwiYSI6ImNsaDlwaW1tdDA5cW0zcnRkYWJxNW00NmMifQ.-UjTToqIopVTq7plocSHhQ',
 		defaultLng: -70.64827, 
