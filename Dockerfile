@@ -8,14 +8,14 @@ WORKDIR /app
 COPY package.json ./
 
 # Instala las dependencias
-RUN npm cache clean --force
-RUN npm install --legacy-peer-deps
+#RUN npm cache clean --force
+#RUN npm install --legacy-peer-deps
 
 # Copia el resto de los archivos de la aplicación
 COPY . .
 
 # Compila la aplicación Angular
-RUN npm run build -- 
+#RUN npm run build -- 
 
 # Segunda etapa para la imagen final
 FROM nginx:alpine
