@@ -51,7 +51,7 @@ export class IntegrationDetailComponent implements OnInit {
 		switch (this.data.type) {
 			case 'MERCADOPAGO':
 				let sdkString = '';
-				sdkString = `<script type="text/javascript" src="https://clickgroup-backend-production.up.railway.app/swoogo-integration.1.0.0.js"></script>    
+				sdkString = `<script type="text/javascript" src="https://clickgroup-be.latamhosting.com.ar/swoogo-integration.1.0.0.js"></script>    
 						<script>
 						const integration_id="##INTEGRATION_ID##";
 						const gateway="${environment.baseBEUrl}/";
