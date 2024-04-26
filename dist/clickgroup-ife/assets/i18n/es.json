@@ -12,5 +12,6 @@
     "The start_time is required": "La Hora inicio es requerida",
     "The end_date is required": "La Fecha fin es requerida",
     "The end_time is required": "La Hora fin es requerida",
-    "SETTING": "Configuración"
+    "SETTING": "Configuración",
+    "CHECKIN": "Check In"
 }

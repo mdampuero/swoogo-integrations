@@ -31,9 +31,9 @@
                                     <th (click)="integrationService.setOrder('event_id')">
                                         <app-table-th [title]="'Evento'" [field]="'event_id'" [sort]="integrationService.sort" [direction]="integrationService.direction"></app-table-th>
                                     </th>
-                                    <th (click)="integrationService.setOrder('item_currency')">
+                                    <!-- <th (click)="integrationService.setOrder('item_currency')">
                                         <app-table-th [title]="'Moneda'" [field]="'item_currency'" [sort]="integrationService.sort" [direction]="integrationService.direction"></app-table-th>
-                                    </th>
+                                    </th> -->
                                     <th (click)="integrationService.setOrder('isActive')">
                                         <app-table-th [title]="'Activo'" [field]="'isActive'" [sort]="integrationService.sort" [direction]="integrationService.direction"></app-table-th>
                                     </th>
@@ -48,7 +48,7 @@
                                     <td>{{ item.type | translate }}</td>
                                     <!-- <td>{{ item.item_title | truncate:[50,'...'] }}</td> -->
                                     <td>{{ item.event.name }}</td>
-                                    <td>{{ item.item_currency | translate }}</td>
+                                    <!-- <td>{{ item.item_currency | translate }}</td> -->
                                     <td [innerHTML]="item.isActive | badgeBinary"></td>
                                     <td>{{ item.created_at | date: 'dd/MM/yyyy HH:mm' }}</td>
                                     <td class="text-right">

@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class BtnCopyComponent {
   @Input() public text='';
+  @Input() public icon=false;
   public defaultText='Copiar'
   public btnText='';
   constructor(private clipboard: Clipboard,private _snackBar: MatSnackBar){

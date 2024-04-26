@@ -75,6 +75,17 @@
                                     </div>
                                 </div>
                             </ng-container>
+                            <ng-container *ngIf="form.type == 'CHECKIN'">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>Activo</label>
+                                        <select class="form-control" [(ngModel)]="form.isActive" name="isActive">
+                                            <option value="1">SI</option>
+                                            <option value="0">NO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </ng-container>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Descripción</label>

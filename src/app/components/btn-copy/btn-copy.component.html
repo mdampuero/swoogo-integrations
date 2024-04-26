@@ -1,1 +1,6 @@
-<a class="pull-right cursor-pointer text-white" (click)="copy()" title="Copiar"> <i class="fa fa-copy"></i> {{ btnText }}</a>
+<a *ngIf="!icon" class="pull-right cursor-pointer text-white" (click)="copy()" title="Copiar"> 
+    <i class="fa fa-copy"></i> {{ btnText }}
+</a>
+<a *ngIf="icon" class="btn btn-outline-warning btn-xs mr-1" (click)="copy()"  title="Copiar">
+    <i class="fa fa-copy"></i>
+</a>

@@ -4,7 +4,7 @@
         <div class="card-body">
             <h3 class="card-title">
                 Integración: <b>Nº</b> {{ data.id }}
-                
+
             </h3>
             <hr>
             <div class="row">
@@ -23,14 +23,14 @@
                     <div class="card bg-light">
                         <h4 class="card-header bg-success text-white"><b>Configuración</b></h4>
                         <div class="card-body">
-                            <p><b>Access Token:</b> {{ data.access_token }}</p>
+                            <p *ngIf="data.access_token"><b>Access Token:</b> {{ data.access_token }}</p>
                             <p><b>Activo: </b> <span [innerHTML]="data.isActive | badgeBinary"></span></p>
                             <p><b>Creada: </b> {{ data.created_at | date: 'dd/MM/yyyy HH:mm' }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <ng-container *ngIf="data.type == 'MERCADOPAGO'">
                 <div class="card bg-light">
                     <h4 class="card-header bg-warning text-white">
@@ -38,7 +38,7 @@
                         <app-btn-copy [text]="sdkString"></app-btn-copy>
                     </h4>
                     <div class="card-body">
-                        <p>{{ sdkString  }}</p>
+                        <p>{{ sdkString }}</p>
                     </div>
                 </div>
                 <div class="card bg-light">
@@ -57,16 +57,53 @@
                                 <tr *ngFor="let item of data.transactions; let i=index;">
                                     <td>{{ item.created_at | date:"dd/MM/Y HH:mm" }}</td>
                                     <td [innerHTML]="item.status| badgeStatus"></td>
-                                    <td><ng-container *ngIf="item.response">{{ item.response.body.currency_id}} {{ item.amount | formatNumber }}</ng-container></td>
+                                    <td><ng-container *ngIf="item.response">{{ item.response.body.currency_id}} {{
+                                            item.amount | formatNumber }}</ng-container></td>
                                     <td>
                                         <table class="table-condensed">
                                             <tr *ngFor="let registrant of item.registrants; let i=index;">
                                                 <td>{{ registrant.swoogo_id }}</td>
-                                                <td><a href="mailto:{{ registrant.email }}">{{ registrant.email }}</a></td>
-                                                <td><ng-container *ngIf="registrant.swoogo_data">{{ registrant.swoogo_data.first_name }} {{ registrant.swoogo_data.last_name }}</ng-container></td>
-                                                <td><ng-container *ngIf="item.response">{{ item.response.body.currency_id}}</ng-container> {{ registrant.price | formatNumber }}</td>
+                                                <td><a href="mailto:{{ registrant.email }}">{{ registrant.email }}</a>
+                                                </td>
+                                                <td><ng-container *ngIf="registrant.swoogo_data">{{
+                                                        registrant.swoogo_data.first_name }} {{
+                                                        registrant.swoogo_data.last_name }}</ng-container></td>
+                                                <td><ng-container *ngIf="item.response">{{
+                                                        item.response.body.currency_id}}</ng-container> {{
+                                                    registrant.price | formatNumber }}</td>
                                             </tr>
                                         </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="data.type == 'CHECKIN'">
+                <div class="card bg-light">
+                    <h4 class="card-header bg-primary text-white"><b>Sesiones</b></h4>
+                    <div class="card-body">
+                        <table class="table table-hover table-bordered ">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Link QR Scan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of sessions; let i=index;">
+                                    <td>{{ item.id }}</td>
+                                    <td>{{ item.name }}</td>
+                                    <td class="text-center">
+                                        <a class="btn btn-outline-info btn-xs mr-1"
+                                        href="{{ webChecking }}?i={{ data.id }}&e={{ data.event_id }}&s={{ item.id}}"
+                                        target="_blank" title="Abrir link">
+                                        <i class="fa fa-external-link text-info"></i>
+                                    </a>
+                                    <app-btn-copy [icon]="true"
+                                        [text]="webChecking + '?i=' + data.id + '&e=' + data.event_id + '&s='+ item.id"></app-btn-copy>
                                     </td>
                                 </tr>
                             </tbody>
@@ -81,7 +118,7 @@
                         <app-btn-copy [text]="sdkString"></app-btn-copy>
                     </h4>
                     <div class="card-body">
-                        <p>{{ sdkString  }}</p>
+                        <p>{{ sdkString }}</p>
                     </div>
                 </div>
             </ng-container>

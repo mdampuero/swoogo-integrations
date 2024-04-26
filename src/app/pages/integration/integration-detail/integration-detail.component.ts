@@ -7,6 +7,7 @@ import { EventsService } from 'src/app/services/events.service';
 import { lastValueFrom } from 'rxjs';
 import { RegistrantsService } from 'src/app/services/api/registrant.service';
 import { environment } from "src/environments/environment";
+import { SessionSwoogoService } from 'src/app/services/api/sessionSwoogo.service';
 
 
 @Component({
@@ -20,6 +21,8 @@ export class IntegrationDetailComponent implements OnInit {
 	public sdkString = '';
 	public registrantsData: any;
 	public transactions: any;
+	public sessions: any;
+	public webChecking = '';
 	public breadcrumbs = [
 		{ url: '/admin/inicio', title: 'Inicio' },
 		{ url: '/admin/integraciones', title: 'Integraciones' },
@@ -33,7 +36,8 @@ export class IntegrationDetailComponent implements OnInit {
 		public registrants: RegistrantsService,
 		private _snackBar: MatSnackBar,
 		private activatedRoute: ActivatedRoute,
-		public integration: IntegrationService
+		public integration: IntegrationService,
+		public session: SessionSwoogoService,
 	) {
 		this.id = this.activatedRoute.snapshot.paramMap.get('id');
 	}
@@ -62,6 +66,12 @@ export class IntegrationDetailComponent implements OnInit {
 				break;
 			case 'WEBSERVICE':
 				this.sdkString = `https://documenter.getpostman.com/view/8526806/2s9Yyy8e8L`
+				break;
+			case 'CHECKIN':
+				const sessions: any = await lastValueFrom(this.session.getAll(parseInt(integration.integration.event_id)));
+				this.sessions = sessions.data;
+				this.webChecking = environment.webChecking;
+				
 				break;
 		}
 		this.breadcrumbs[2].title = this.data.id;

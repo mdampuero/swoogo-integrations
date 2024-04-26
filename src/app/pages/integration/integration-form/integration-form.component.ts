@@ -39,6 +39,10 @@ export class IntegrationFormComponent implements OnInit {
 		{
 			value: 'WEBSERVICE',
 			label: 'Web service'
+		},
+		{
+			value: 'CHECKIN',
+			label: 'Check In'
 		}
 	]
 	public currencies: any = [
