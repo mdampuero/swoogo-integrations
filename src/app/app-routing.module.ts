@@ -44,8 +44,8 @@ const routes: Routes = [
   { path: 'admin/integraciones/:id', component: IntegrationDetailComponent ,canActivate:[AuthGuard]},
   { path: 'admin/integraciones/editar/:id', component: IntegrationFormComponent ,canActivate:[AuthGuard]},
   
-  { path: '', pathMatch:'full', component: FeHomeComponent},
-  { path: '**', pathMatch:'full', component: FeHomeComponent},
+  { path: '', pathMatch:'full', component: HomeComponent,canActivate:[AuthGuard]},
+  { path: '**', pathMatch:'full', component: HomeComponent,canActivate:[AuthGuard]},
 
 
 ];

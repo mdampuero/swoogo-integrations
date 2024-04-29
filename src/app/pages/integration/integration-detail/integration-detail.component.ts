@@ -55,12 +55,32 @@ export class IntegrationDetailComponent implements OnInit {
 		switch (this.data.type) {
 			case 'MERCADOPAGO':
 				let sdkString = '';
-				sdkString = `<script type="text/javascript" src="https://clickgroup-be.latamhosting.com.ar/swoogo-integration.1.0.0.js"></script>    
+				sdkString = `<script>var socket;var count = 0;var intervalId;var transaction_id = "";var originalText = '';var btnSubmit = '';</script>
+				<script type="text/javascript" src="${environment.baseBEUrl}/swoogo-integration.1.0.0.js"></script>    
 						<script>
 						const integration_id="##INTEGRATION_ID##";
 						const gateway="${environment.baseBEUrl}/";
 						const registrantForm="#registrant-form"; 
 						const mode="prod";
+						const captureForm = () => {
+							$(registrantForm).submit(function (e) {
+								if (transaction_id) {
+									return true;
+								}
+								e.preventDefault();
+								setTimeout(function () {
+									if (count == 0 && isFormOK()) {
+										count++;
+										btnSubmit = $(registrantForm + " button[type=submit]");
+										btnSubmit.attr("disabled", true);
+										payment()
+									} else if (transaction_id != "") {
+										return true
+									}
+								}, 500);
+								return false;
+							});
+						};
 						jQuery(function(){captureForm()});</script>`
 				this.sdkString = sdkString.replace(new RegExp("\\##INTEGRATION_ID##", "gm"), this.id);
 				break;
