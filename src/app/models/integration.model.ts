@@ -6,7 +6,7 @@ export class Integration {
     public password: string;
     public item_currency: string;
     public description!: string;
-    // public item_price: number;
+    public extraOption: number;
     public isActive: number;
     public event: any;
     constructor(fields?: any) {
@@ -17,7 +17,7 @@ export class Integration {
         this.type = fields.type;
         this.password = fields.password;
         this.item_currency = fields.item_currency;
-        // this.item_price = fields.item_price;
+        this.extraOption = fields.extraOption;
         this.isActive = fields.isActive;
         this.event = fields.event;
     }

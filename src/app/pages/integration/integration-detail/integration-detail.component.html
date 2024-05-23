@@ -23,7 +23,15 @@
                     <div class="card bg-light">
                         <h4 class="card-header bg-success text-white"><b>Configuración</b></h4>
                         <div class="card-body">
-                            <p *ngIf="data.access_token"><b>Access Token:</b> {{ data.access_token }}</p>
+                            <ng-container *ngIf="data.type == 'MERCADOPAGO'">
+                                <p><b>Access Token:</b> {{ data.access_token }}</p>
+                            </ng-container>
+                            <ng-container *ngIf="data.type == 'CHECKIN'">
+                                <p><b>Checkin por nombre: </b> <span [innerHTML]="data.extraOption | badgeBinary"></span></p>
+                            </ng-container>
+                            <ng-container *ngIf="data.type == 'MERCADOPAGO'">
+                                <p><b>Access Token:</b> {{ data.access_token }}</p>
+                            </ng-container>
                             <p><b>Activo: </b> <span [innerHTML]="data.isActive | badgeBinary"></span></p>
                             <p><b>Creada: </b> {{ data.created_at | date: 'dd/MM/yyyy HH:mm' }}</p>
                         </div>
@@ -84,6 +92,9 @@
                 <div class="card bg-light">
                     <h4 class="card-header bg-primary text-white"><b>Sesiones</b></h4>
                     <div class="card-body">
+                        <div class="pull-right mb-3">
+                            <a href="{{ environment.baseBEUrl }}/api/eventSwoogos/{{ data.event_id }}/sessionsDownload/{{ data.id }}"><i class="fa fa-file-excel-o text-success"></i> Descargar</a>
+                        </div>
                         <table class="table table-hover table-bordered ">
                             <thead>
                                 <tr>

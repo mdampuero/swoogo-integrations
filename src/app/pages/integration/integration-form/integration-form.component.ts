@@ -27,6 +27,7 @@ export class IntegrationFormComponent implements OnInit {
 		item_currency: '',
 		access_token: '',
 		isActive: 1,
+		extraOption: 1,
 		password: ''
 	};
 
@@ -93,7 +94,8 @@ export class IntegrationFormComponent implements OnInit {
 				next: (data: any) => {
 					this.form = data.integration.integration;
 					this.events = data.events.data;
-					this.form.isActive = (data.integration.integration.isActive) ? 1 : 0
+					this.form.isActive = (data.integration.integration.isActive) ? 1 : 0;
+					this.form.extraOption = (data.integration.integration.extraOption) ? 1 : 0
 				},
 				complete: () => this.spinner.hide()
 			});

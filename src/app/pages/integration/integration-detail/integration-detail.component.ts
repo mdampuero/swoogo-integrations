@@ -23,6 +23,7 @@ export class IntegrationDetailComponent implements OnInit {
 	public transactions: any;
 	public sessions: any;
 	public webChecking = '';
+	public environment = environment;
 	public breadcrumbs = [
 		{ url: '/admin/inicio', title: 'Inicio' },
 		{ url: '/admin/integraciones', title: 'Integraciones' },
