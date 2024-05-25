@@ -27,7 +27,7 @@
                                 <p><b>Access Token:</b> {{ data.access_token }}</p>
                             </ng-container>
                             <ng-container *ngIf="data.type == 'CHECKIN'">
-                                <p><b>Checkin por nombre: </b> <span [innerHTML]="data.extraOption | badgeBinary"></span></p>
+                                <p><b>Checkin por buscador: </b> <span [innerHTML]="data.extraOption | badgeBinary"></span></p>
                             </ng-container>
                             <ng-container *ngIf="data.type == 'MERCADOPAGO'">
                                 <p><b>Access Token:</b> {{ data.access_token }}</p>
