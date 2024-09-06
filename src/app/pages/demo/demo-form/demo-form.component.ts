@@ -60,7 +60,8 @@ export class DemoFormComponent implements OnInit {
     this.spinner.show();
     this.demoService.save(this.form).subscribe(
       (data:any) => {
-        this._snackBar.open('Registro creado','Aceptar', { duration: 3000 });
+        this.spinner.hide();
+        this._snackBar.open('Registro guardado','Aceptar', { duration: 3000 });
         this.router.navigate(['/admin/demos']);
       },
       (error) => this._msgErrors.show(error)

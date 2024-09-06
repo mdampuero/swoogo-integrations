@@ -28,6 +28,7 @@ export class SettingComponent implements OnInit {
 		banner: '',
 		bannerBase64: '',
 		banner_link: '',
+		contact_email: '',
 		slider_home: []
 	};
 	public tmp: any = {

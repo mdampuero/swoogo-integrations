@@ -4,7 +4,7 @@
 
 export const environment = {
 	production: false,
-	baseBEUrl: 'http://localhost:3000',
+	baseBEUrl: 'http://clickgroup.local',
 	webChecking: 'http://localhost:8085',
 	mapBox: {
 		apiKey: 'pk.eyJ1IjoibWRhbXB1ZXJvIiwiYSI6ImNsaDlwaW1tdDA5cW0zcnRkYWJxNW00NmMifQ.-UjTToqIopVTq7plocSHhQ',

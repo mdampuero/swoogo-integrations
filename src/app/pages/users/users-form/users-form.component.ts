@@ -68,7 +68,8 @@ export class UsersFormComponent implements OnInit {
     this.spinner.show();
     this.usersService.save(this.form).subscribe(
       (data:any) => {
-        this._snackBar.open('Registro creado','Aceptar', { duration: 3000 });
+        this.spinner.hide();
+        this._snackBar.open('Registro guardado','Aceptar', { duration: 3000 });
         this.router.navigate(['/usuarios']);
       },
       (error) => this._msgErrors.show(error)
