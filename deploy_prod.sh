@@ -7,4 +7,4 @@ do
 done
 echo "Build";
 
-ng build --configuration production --base-href 'https://clickgroup-be.latamhosting.com.ar/' && cp -r -f dist/clickgroup-ife/* ../swoogo-integrations-be/public
+ng build --configuration production --base-href 'https://clickgroup-bo.latamhosting.com.ar/' && cp -r -f dist/clickgroup-ife/* ../swoogo-integrations-be/public
