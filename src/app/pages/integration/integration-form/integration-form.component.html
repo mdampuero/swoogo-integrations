@@ -1,6 +1,6 @@
 <div class="container-fluid animated fadeIn">
     <app-breadcrumb [title]="'Integraciones'" [breadcrumbs]="breadcrumbs"></app-breadcrumb>
-        
+
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -94,6 +94,50 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-sm-6"></div>
+                                <div class="col-sm-3">
+                                  <div class="form-group">
+                                    <label>Solicitar más datos</label>
+                                    <select class="form-control" [(ngModel)]="form.request" name="request">
+                                        <option value="1">SI</option>
+                                        <option value="0">NO</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <ng-container *ngIf="form.request == 1">
+                                  <div class="col-sm-3">
+                                    <div class="form-group">
+                                      <label>Label *</label>
+                                      <input type="text" placeholder="Ej: Ingrese la fecha de nacimiento" class="form-control" [(ngModel)]="form.request_label" name="request_label">
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="form-group">
+                                      <label>Campo (ID de swoogo) *</label>
+                                      <input type="text" placeholder="" class="form-control" [(ngModel)]="form.request_field" name="request_field">
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="form-group">
+                                      <label>Tipo de respuesta *</label>
+                                      <select class="form-control" [(ngModel)]="form.request_input_type" name="request_input_type">
+                                        <option value="STRING">Texto libre</option>
+                                        <option value="OPTIONS">Opciones</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-6" *ngIf="form.request_input_type == 'OPTIONS'">
+                                    <div class="form-group">
+                                      <label>Opciones <a (click)="addOption()" matTooltip="Agregar opción" matTooltipPosition="above" role="button" class="btn btn-outline-warning btn-xs mr-1"><i class="fa fa-plus text-warning"></i></a></label>
+                                      <p *ngFor="let type of form.request_options; let i = index; trackBy: trackByFn" class="input-group mb-3">
+                                        <input [(ngModel)]="form.request_options[i]" [ngModelOptions]="{standalone: true}" type="text" class="form-control" >
+                                        <span class="input-group-text" (click)="removeInput(i)" style="cursor: pointer;">
+                                          <i class="fa fa-times text-danger"></i>
+                                        </span>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </ng-container>
                             </ng-container>
                             <div class="col-sm-12">
                                 <div class="form-group">

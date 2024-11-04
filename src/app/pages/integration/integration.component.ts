@@ -13,6 +13,24 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class IntegrationComponent implements OnInit {
   public data:any={ };
   public query:string='';
+  public types: any = [
+		{
+			value: 'MERCADOPAGO',
+			label: 'Mercado Pago'
+		},
+		{
+			value: 'WEBSERVICE',
+			label: 'Web service'
+		},
+		{
+			value: 'CHECKIN',
+			label: 'Check In'
+		}
+	]
+  public filter = {
+		type: '',
+    isActive : ''
+	};
   public breadcrumbs=[{url:'/admin/inicio',title:'Inicio'},{url:'',title:'Integrations'}];
 
   constructor(
@@ -20,7 +38,7 @@ export class IntegrationComponent implements OnInit {
     public integrationService: IntegrationService,
     public events: EventsService,
     private _snackBar: MatSnackBar
-  ) { 
+  ) {
     this.events.subscribe('pagination', (data: any) => {
       this.integrationService.calcOffset(data.currentPage);
       this.getResult();
@@ -45,14 +63,14 @@ export class IntegrationComponent implements OnInit {
 
   getResult(){
     this.spinner.show();
-    this.integrationService.get(this.query).subscribe(
-      (data:any) => { this.data=data; 
+    this.integrationService.get(this.query, this.filter).subscribe(
+      (data:any) => { this.data=data;
       },
       (error) => this.spinner.hide(),
       () => this.spinner.hide()
     );
   }
-  
+
   remove(index:number){
     Swal.fire({
       text: '¿Está seguro que desea eliminar este registro?',
@@ -67,5 +85,5 @@ export class IntegrationComponent implements OnInit {
       }
     });
   }
-  
+
 }

@@ -5,17 +5,32 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row form-material">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="text-left animated fadeInLeft">
                                 <a role="button" routerLink="nuevo" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo</a>
                             </div>
                         </div>
-                        <div class="col-md-4 animated fadeInDown">
-                            <div>
-                                <input type="text" class="form-control" placeholder="Buscar..." [(ngModel)]="query" (keyUp.enter)="search()">
+                        <div class="col-md-6 animated fadeInDown">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                  <select class="form-control" [(ngModel)]="filter.type" name="type" (change)="this.getResult()" placeholder="dsadsa">
+                                    <option value=''>-- Todos los tipos --</option>
+                                    <option value="{{ type.value }}" *ngFor="let type of types; let i=index;" >{{ type.label }}</option>
+                                  </select>
+                                </div>
+                                <div class="col-lg-4">
+                                  <select class="form-control" [(ngModel)]="filter.isActive"  (change)="this.getResult()" name="isActive">
+                                    <option value=''>-- Todos los estados --</option>
+                                    <option value="1">Activos</option>
+                                    <option value="0">Inactivos</option>
+                                  </select>
+                                </div>
+                                <div class="col-lg-4">
+                                  <input type="text" class="form-control" placeholder="Buscar..." [(ngModel)]="query" (keyUp.enter)="search()">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="text-right animated fadeInRight">
                                 <app-pagination  [total]="data.recordsFiltered" [limit]="integrationService.limit" [pages]="data.pages"></app-pagination>
                             </div>
@@ -52,8 +67,8 @@
                                     <td [innerHTML]="item.isActive | badgeBinary"></td>
                                     <td>{{ item.created_at | date: 'dd/MM/yyyy HH:mm' }}</td>
                                     <td class="text-right">
-                                        <a matTooltip="Detalle" matTooltipPosition="above" role="button" [routerLink]="['/admin/integraciones', item.id]"  class="btn btn-outline-success btn-xs mr-1"><i class="fa fa-eye text-succes"></i></a> 
-                                        <a matTooltip="Editar" matTooltipPosition="above" role="button" [routerLink]="['/admin/integraciones/editar', item.id]"  class="btn btn-outline-info btn-xs mr-1"><i class="fa fa-pencil text-info"></i></a> 
+                                        <a matTooltip="Detalle" matTooltipPosition="above" role="button" [routerLink]="['/admin/integraciones', item.id]"  class="btn btn-outline-success btn-xs mr-1"><i class="fa fa-eye text-succes"></i></a>
+                                        <a matTooltip="Editar" matTooltipPosition="above" role="button" [routerLink]="['/admin/integraciones/editar', item.id]"  class="btn btn-outline-info btn-xs mr-1"><i class="fa fa-pencil text-info"></i></a>
                                         <a matTooltip="Eliminar" matTooltipPosition="above" role="button" (click)="remove(i)" class="btn-remove btn btn-outline-danger btn-xs"><i class="fa fa-trash text-danger"></i></a>
                                     </td>
                                 </tr>

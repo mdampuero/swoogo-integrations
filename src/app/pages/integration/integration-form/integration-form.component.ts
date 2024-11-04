@@ -27,6 +27,11 @@ export class IntegrationFormComponent implements OnInit {
 		item_currency: '',
 		access_token: '',
 		isActive: 1,
+		request: 0,
+    request_label: '',
+    request_field: '',
+    request_input_type: 'STRING',
+    request_options: [],
 		extraOption: 1,
 		password: ''
 	};
@@ -92,10 +97,11 @@ export class IntegrationFormComponent implements OnInit {
 				integration: this.integrationService.getOne(id)
 			}).subscribe({
 				next: (data: any) => {
-					this.form = data.integration.integration;
-					this.events = data.events.data;
-					this.form.isActive = (data.integration.integration.isActive) ? 1 : 0;
-					this.form.extraOption = (data.integration.integration.extraOption) ? 1 : 0
+					this.form             = data.integration.integration;
+					this.events           = data.events.data;
+					this.form.isActive    = (data.integration.integration.isActive) ? 1   : 0;
+					this.form.extraOption = (data.integration.integration.extraOption) ? 1: 0;
+					this.form.request     = (data.integration.integration.request) ? 1 : 0;
 				},
 				complete: () => this.spinner.hide()
 			});
@@ -123,6 +129,18 @@ export class IntegrationFormComponent implements OnInit {
 	ngOnInit(): void {
 
 	}
+
+  removeInput(index: number) {
+    this.form.request_options.splice(index, 1);
+  }
+
+  trackByFn(index: number, item: any) {
+    return index; // Usar el índice como identificador único
+  }
+
+  addOption(){
+    this.form.request_options.push('');
+  }
 
 	save(form: NgForm) {
 		this.spinner.show();

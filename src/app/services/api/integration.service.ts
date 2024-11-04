@@ -17,7 +17,7 @@ export class IntegrationService {
   public sort = "createdAt";
   public direction = "DESC";
 
-  constructor(private http: HttpClient,public events: EventsService, public login: LoginService) { 
+  constructor(private http: HttpClient,public events: EventsService, public login: LoginService) {
 
   }
 
@@ -34,14 +34,16 @@ export class IntegrationService {
     this.events.publish('order', {});
   }
 
-  get(query: string) {
-    return this.http.get(`${environment.baseBEUrl}/api/integrations?search=${query}&offset=${this.offset}&limit=${this.limit}&sort=${this.sort}&direction=${this.direction}`,this.login.createAuthorizationHeader());
+  get(query: string, filter:any ) {
+    let filterString = encodeURIComponent(JSON.stringify(filter));
+
+    return this.http.get(`${environment.baseBEUrl}/api/integrations?search=${query}&offset=${this.offset}&limit=${this.limit}&sort=${this.sort}&direction=${this.direction}&filter=${filterString}`,this.login.createAuthorizationHeader());
   }
 
   stats() {
     return this.http.get(`${environment.baseBEUrl}/api/integrations/stats/get`,this.login.createAuthorizationHeader());
   }
-  
+
   getOne(id: string) {
     return this.http.get(`${environment.baseBEUrl}/api/integrations/${id}`,this.login.createAuthorizationHeader());
   }
@@ -49,7 +51,7 @@ export class IntegrationService {
   getTransactions(id: string) {
     return this.http.get(`${environment.baseBEUrl}/api/integrations/${id}/transactions/`,this.login.createAuthorizationHeader());
   }
-  
+
   getAll() {
     return this.http.get(`${environment.baseBEUrl}/api/integrations?search%5Bvalue%5D=&start=0&length=-1&sort=name&direction=ASC`,this.login.createAuthorizationHeader());
   }

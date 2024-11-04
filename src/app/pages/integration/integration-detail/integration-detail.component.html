@@ -4,7 +4,6 @@
         <div class="card-body">
             <h3 class="card-title">
                 Integración: <b>Nº</b> {{ data.id }}
-
             </h3>
             <hr>
             <div class="row">
@@ -28,9 +27,17 @@
                             </ng-container>
                             <ng-container *ngIf="data.type == 'CHECKIN'">
                                 <p><b>Checkin por buscador: </b> <span [innerHTML]="data.extraOption | badgeBinary"></span></p>
+                                <p><b>Solicitar más datos: </b> <span [innerHTML]="data.request | badgeBinary"></span></p>
+                                <p *ngIf="data.request"><b>Label: </b>
+                                  {{ data.request_label }}
+                                  <span *ngIf="data.request_input_type == 'STRING'">(Texto libre)</span>
+                                  <span *ngIf="data.request_input_type == 'OPTIONS'">(Opciones)</span>
+                                </p>
+                                <p *ngIf="data.request"><b>Campo (ID de swoogo): </b> {{ data.request_field }}</p>
                             </ng-container>
-                            <ng-container *ngIf="data.type == 'MERCADOPAGO'">
+                            <ng-container *ngIf="data.type == 'WEBSERVICE'">
                                 <p><b>Access Token:</b> {{ data.access_token }}</p>
+                                <p><b>Endpoint:</b> {{ environment.baseBEUrl }}</p>
                             </ng-container>
                             <p><b>Activo: </b> <span [innerHTML]="data.isActive | badgeBinary"></span></p>
                             <p><b>Creada: </b> {{ data.created_at | date: 'dd/MM/yyyy HH:mm' }}</p>
@@ -129,7 +136,7 @@
                         <app-btn-copy [text]="sdkString"></app-btn-copy>
                     </h4>
                     <div class="card-body">
-                        <p>{{ sdkString }}</p>
+                        <p><a href="{{ sdkString }}" target="_blank">{{ sdkString }}</a></p>
                     </div>
                 </div>
             </ng-container>
