@@ -151,28 +151,32 @@
                   </div>
                   <div class="col-sm-6">
                   </div>
-                  <div class="col-sm-6">
-                    <h4 class="card-title animated fadeInDown">Banner del evento</h4>
-                    <hr>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <app-card-picture [path]="tmp.pictureBackground"
-                          [default]="'assets/images/default-banner.png'"></app-card-picture>
-                      </div>
-                      <div class="col-sm-6">
-                        <app-input-file [maxSize]="2000" [inputName]="'pictureBackgroundBase64'"
-                          [inputNamePreview]="'pictureBackground'" [accept]="'image/png, image/jpeg, image/jpg'">
-                        </app-input-file>
-                        <button
-                          *ngIf="form.pictureBackground || tmp.pictureBackground != 'assets/images/default-banner.png'"
-                          class="btn btn-danger btn-xs"
-                          (click)="removePictureBackground('assets/images/default-banner.png')" type="button">
-                          <i class="fa fa-trash"></i> Quitar imagen
-                        </button>
+                </ng-container>
+                <div class="col-sm-12">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <h4 class="card-title animated fadeInDown">Banner del evento</h4>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <app-card-picture [path]="tmp.pictureBackground"
+                            [default]="'assets/images/default-banner.png'"></app-card-picture>
+                        </div>
+                        <div class="col-sm-6">
+                          <app-input-file [maxSize]="2000" [inputName]="'pictureBackgroundBase64'"
+                            [inputNamePreview]="'pictureBackground'" [accept]="'image/png, image/jpeg, image/jpg'">
+                          </app-input-file>
+                          <button
+                            *ngIf="form.pictureBackground || tmp.pictureBackground != 'assets/images/default-banner.png'"
+                            class="btn btn-danger btn-xs"
+                            (click)="removePictureBackground('assets/images/default-banner.png')" type="button">
+                            <i class="fa fa-trash"></i> Quitar imagen
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </ng-container>
+                </div>
               </ng-container>
               <div class="col-sm-12">
                 <div class="form-group">
