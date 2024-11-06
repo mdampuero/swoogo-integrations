@@ -12,7 +12,7 @@ export class CardPictureComponent implements OnInit {
   @Input() default: string = "";
   defaultPicture = 'assets/images/no-photo.png'
   constructor() { }
-  
+
   ngOnInit(): void {
     if(this.default!=""){
       this.defaultPicture=this.default

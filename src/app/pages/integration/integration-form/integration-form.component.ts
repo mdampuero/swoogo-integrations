@@ -13,15 +13,18 @@ import { Integration } from 'src/app/models/integration.model';
 import { EventSwoogoService } from 'src/app/services/api/eventSwoogo.service';
 import { forkJoin } from 'rxjs';
 import { UtilsService } from 'src/app/services/utils.service';
+import { EventsService } from 'src/app/services/events.service';
 @Component({
 	selector: 'app-integration-form',
 	templateUrl: './integration-form.component.html'
 })
 export class IntegrationFormComponent implements OnInit {
-	public form: Integration = {
+	public form: any = {
 		id: '',
 		type: '',
 		description: '',
+    pictureBackground: '',
+		pictureBackgroundBase64: '',
 		event_id: '',
 		event: {},
 		item_currency: '',
@@ -34,6 +37,11 @@ export class IntegrationFormComponent implements OnInit {
     request_options: [],
 		extraOption: 1,
 		password: ''
+	};
+
+  public tmp: any = {
+		pictureBackground: '',
+		pictureCard: ''
 	};
 
 	public events: any;
@@ -70,6 +78,7 @@ export class IntegrationFormComponent implements OnInit {
 	];
 
 	constructor(
+    public event: EventsService,
 		private _msgErrors: msgErrors,
 		private spinner: NgxSpinnerService,
 		private router: Router,
@@ -102,6 +111,7 @@ export class IntegrationFormComponent implements OnInit {
 					this.form.isActive    = (data.integration.integration.isActive) ? 1   : 0;
 					this.form.extraOption = (data.integration.integration.extraOption) ? 1: 0;
 					this.form.request     = (data.integration.integration.request) ? 1 : 0;
+          this.tmp.pictureBackground = (data.integration.integration.pictureBackground) ? data.integration.integration.pictureBackground : "assets/images/default-banner.png"
 				},
 				complete: () => this.spinner.hide()
 			});
@@ -127,7 +137,10 @@ export class IntegrationFormComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-
+    this.event.subscribe('app-input-file', (data: any) => {
+			this.form[data.inputName] = data.base64;
+			this.tmp[data.inputNamePreview] = data.base64;
+		});
 	}
 
   removeInput(index: number) {
@@ -141,6 +154,11 @@ export class IntegrationFormComponent implements OnInit {
   addOption(){
     this.form.request_options.push('');
   }
+
+  removePictureBackground(defaultPicture: string) {
+		this.form.pictureBackgroundBase64 = '##delete##';
+		this.tmp.pictureBackground = defaultPicture;
+	}
 
 	save(form: NgForm) {
 		this.spinner.show();

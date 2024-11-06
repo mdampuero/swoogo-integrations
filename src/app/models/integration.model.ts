@@ -14,9 +14,13 @@ export class Integration {
     public request_field     : string;
     public request_options   : any;
     public event             : any;
+    public pictureBackground: string;
+    public pictureBackgroundPreview: any;
     constructor(fields?: any) {
         this.id                 = fields.id;
         this.access_token       = fields.access_token;
+        this.pictureBackground = fields.pictureBackground;
+        this.pictureBackgroundPreview = fields.pictureBackgroundPreview;
         this.description        = fields.description;
         this.event_id           = fields.event_id;
         this.type               = fields.type;
