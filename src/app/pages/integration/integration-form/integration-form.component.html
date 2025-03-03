@@ -59,8 +59,7 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Access Token *</label>
-                    <input type="text" class="form-control" [(ngModel)]="form.access_token" name="access_token"
-                      placeholder="">
+                    <input type="text" class="form-control" [(ngModel)]="form.access_token" name="access_token" placeholder="">
                   </div>
                 </div>
                 <div class="col-sm-3">
@@ -98,7 +97,21 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-sm-6"></div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label>Cámara activa</label>
+                    <select class="form-control" [(ngModel)]="form.camaraEnabled" name="camaraEnabled">
+                      <option value="1">SI</option>
+                      <option value="0">NO</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label>Invitación a la acción</label>
+                    <input type="text" class="form-control" [(ngModel)]="form.textAction" name="textAction" placeholder="">
+                  </div>
+                </div>
                 <div class="col-sm-3">
                   <div class="form-group">
                     <label>Solicitar más datos</label>

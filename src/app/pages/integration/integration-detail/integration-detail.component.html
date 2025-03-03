@@ -40,6 +40,8 @@
                                 <p><b>Endpoint:</b> {{ environment.baseBEUrl }}</p>
                             </ng-container>
                             <p><b>Activo: </b> <span [innerHTML]="data.isActive | badgeBinary"></span></p>
+                            <p><b>Cámara activa: </b> <span [innerHTML]="data.camaraEnabled | badgeBinary"></span></p>
+                            <p><b>Invitación a la acción: </b> {{ data.textAction }}</p>
                             <p><b>Creada: </b> {{ data.created_at | date: 'dd/MM/yyyy HH:mm' }}</p>
                         </div>
                     </div>

@@ -13,3 +13,10 @@ After run the application
 ng serve
 ```
 
+## DEPLOY
+
+```
+ng build --configuration production --base-href https://clickgroup-bo.latamhosting.com.ar
+```
+
+This commnad generate a version in folder dist, now commit this new changes for the deploy in to server

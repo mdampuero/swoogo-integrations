@@ -30,6 +30,7 @@ export class IntegrationFormComponent implements OnInit {
 		item_currency: '',
 		access_token: '',
 		isActive: 1,
+		camaraEnabled: 1,
 		request: 0,
     request_label: '',
     request_field: '',
@@ -109,6 +110,7 @@ export class IntegrationFormComponent implements OnInit {
 					this.form             = data.integration.integration;
 					this.events           = data.events.data;
 					this.form.isActive    = (data.integration.integration.isActive) ? 1   : 0;
+					this.form.camaraEnabled    = (data.integration.integration.camaraEnabled) ? 1   : 0;
 					this.form.extraOption = (data.integration.integration.extraOption) ? 1: 0;
 					this.form.request     = (data.integration.integration.request) ? 1 : 0;
           this.tmp.pictureBackground = (data.integration.integration.pictureBackground) ? data.integration.integration.pictureBackground : "assets/images/default-banner.png"
