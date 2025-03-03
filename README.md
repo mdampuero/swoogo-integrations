@@ -20,3 +20,11 @@ ng build --configuration production --base-href https://clickgroup-bo.latamhosti
 ```
 
 This commnad generate a version in folder dist, now commit this new changes for the deploy in to server
+
+## IN SERVER
+
+```
+cd hosting/swoogo-integrations
+git pull
+./install 8081
+```
